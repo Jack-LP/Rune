@@ -1,48 +1,17 @@
 import React, { useState } from 'react';
 import AudioCard from './AudioCard';
 
-const Mixer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [mix, setMix] = useState({
-    name: 'default',
-    id: Math.floor(Math.random() * 10000),
-    sounds: {},
-  });
-  const [mixes, setMixes] = useState([]);
-
+const Mixer = ({ isPlaying, setVolumes }) => {
   const sounds = ['birds', 'rain', 'fire', 'thunder', 'waves', 'wind'];
 
-  const saveMix = () => {
-    setMixes((prev) => [...prev, mix]);
-    console.log(`mixes: ${[...mixes, mix]}`);
-  };
-
-  console.log(mix);
-
   return (
-    <div className='flex flex-col gap-4 w-full items-center justify-center'>
-      <button
-        className='btn btn-primary'
-        onClick={() => setIsPlaying((curr) => !curr)}
-      >
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
-      <button className='btn btn-primary' onClick={saveMix}>
-        Save Mix
-      </button>
-      <ul>
-        {mixes.map((mix) => (
-          <li key={mix.id}>
-            {mix.name} (ID: {mix.id})
-          </li>
-        ))}
-      </ul>
+    <div className='grid grid-cols-3 grid-rows-2 gap-4 w-full p-24 bg-neutral-800'>
       {sounds.map((sound) => (
         <AudioCard
           path={sound}
           key={sound}
           isPlaying={isPlaying}
-          setMix={setMix}
+          setVolumes={setVolumes}
         />
       ))}
     </div>

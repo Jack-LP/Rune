@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-const AudioCard = ({ path, isPlaying, setMix }) => {
+const AudioCard = ({ path, isPlaying, setVolumes }) => {
   const [volume, setVolume] = useState(0);
   const audioRef = useRef(null);
 
@@ -23,27 +22,18 @@ const AudioCard = ({ path, isPlaying, setMix }) => {
 
   const handleVolumeChange = (e) => {
     setVolume(e.target.value);
-    setMix((prev) => ({
-      ...prev,
-      sounds: {
-        ...prev.sounds,
-        [path]: {
-          name: path,
-          volume: e.target.value,
-        },
-      },
-    }));
+    setVolumes((prev) => ({ ...prev, [path]: e.target.value }));
   };
 
   return (
-    <div className='w-96 h-36 flex bg-neutral-900 flex-col gap-4 items-center justify-center'>
-      <p>{path}</p>
-      <audio ref={audioRef} controls loop>
+    <div className='flex bg-neutral-900 rounded-lg p-10 flex-col gap-4 items-center justify-center'>
+      <audio ref={audioRef} loop>
         <source
           src={`../../../src-tauri/assets/audio/${path}.mp3`}
           type='audio/mpeg'
         />
       </audio>
+      <p className='capitalize'>{path}</p>
       <input
         type='range'
         className='range'
