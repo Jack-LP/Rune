@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { getFromStorage, setToStorage } from './utilities/localStorage';
 import SideBar from './components/sidebar/SideBar';
 import ControlBar from './components/controlbar/ControlBar';
 import Mixer from './components/mixer/Mixer';
@@ -17,7 +18,9 @@ const App = () => {
     wind: 0,
   });
 
-  const [savedMixes, setSavedMixes] = useState([]);
+  const [savedMixes, setSavedMixes] = useState(
+    getFromStorage('savedMixes', 'parse') || []
+  );
 
   const createMix = (mixName) => {
     let mix = {
@@ -30,7 +33,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(savedMixes);
+    setToStorage('savedMixes', JSON.stringify(savedMixes));
   }, [savedMixes]);
 
   return (
