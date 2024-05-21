@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AudioCard from './AudioCard';
 
-const Mixer = ({ isPlaying, setVolumes }) => {
+const Mixer = ({ isPlaying, setVolumes, volumes }) => {
   const sounds = ['birds', 'rain', 'fire', 'thunder', 'waves', 'wind'];
 
   return (
@@ -12,6 +12,7 @@ const Mixer = ({ isPlaying, setVolumes }) => {
           key={sound}
           isPlaying={isPlaying}
           setVolumes={setVolumes}
+          volumes={volumes}
         />
       ))}
     </div>

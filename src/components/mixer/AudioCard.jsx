@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const AudioCard = ({ path, isPlaying, setVolumes }) => {
+const AudioCard = ({ path, isPlaying, setVolumes, volumes }) => {
   const [volume, setVolume] = useState(0);
   const audioRef = useRef(null);
 
@@ -9,6 +9,11 @@ const AudioCard = ({ path, isPlaying, setVolumes }) => {
       audioRef.current.volume = volume;
     }
   }, [volume]);
+
+  useEffect(() => {
+    audioRef.current.volume = volumes[path];
+    setVolume(volumes[path]);
+  }, [volumes]);
 
   useEffect(() => {
     if (audioRef.current) {

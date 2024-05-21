@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const SideBar = ({ createMix, savedMixes }) => {
+const SideBar = ({ createMix, savedMixes, loadMix, ResetVolumes }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -22,6 +22,10 @@ const SideBar = ({ createMix, savedMixes }) => {
               <i className='fa-solid fa-house'></i>
               <p>Home</p>
             </button>
+            <button className='flex items-center gap-3' onClick={ResetVolumes}>
+              <i className='fa-solid fa-rotate-left'></i>
+              <p>Reset</p>
+            </button>
           </div>
           <div className='flex flex-col gap-2'>
             <h2 className='text-xs text-white/50 pb-4'>SAVED MIXES</h2>
@@ -30,10 +34,14 @@ const SideBar = ({ createMix, savedMixes }) => {
               onClick={() => setShowModal(true)}
             >
               <i className='fa-solid fa-plus'></i>
-              <p>Add Mix</p>
+              <p>Create Mix</p>
             </button>
             {savedMixes.map((item) => (
-              <button key={item.id} className='flex items-center gap-3'>
+              <button
+                key={item.id}
+                className='flex items-center gap-3'
+                onClick={() => loadMix(item)}
+              >
                 <div className='w-3 h-3 rounded-full bg-blue-500'></div>
                 <p>{item.name}</p>
               </button>

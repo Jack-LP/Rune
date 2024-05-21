@@ -9,6 +9,7 @@ const Modal = ({ setShowModal, createMix }) => {
 
   const handleSaveMix = () => {
     createMix(mixName);
+    setShowModal(false);
   };
 
   return (

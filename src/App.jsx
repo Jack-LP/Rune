@@ -9,14 +9,16 @@ import Mixer from './components/mixer/Mixer';
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const [volumes, setVolumes] = useState({
+  const defaultVolumes = {
     birds: 0,
     fire: 0,
     rain: 0,
     thunder: 0,
     waves: 0,
     wind: 0,
-  });
+  };
+
+  const [volumes, setVolumes] = useState(defaultVolumes);
 
   const [savedMixes, setSavedMixes] = useState(
     getFromStorage('savedMixes', 'parse') || []
@@ -32,14 +34,28 @@ const App = () => {
     setSavedMixes((prev) => [...prev, mix]);
   };
 
+  const loadMix = (item) => {
+    console.log(item);
+    setVolumes(item.sounds);
+  };
+
+  const ResetVolumes = () => {
+    setVolumes(defaultVolumes);
+  };
+
   useEffect(() => {
     setToStorage('savedMixes', JSON.stringify(savedMixes));
   }, [savedMixes]);
 
   return (
     <div className='h-screen flex text-white'>
-      <SideBar createMix={createMix} savedMixes={savedMixes} />
-      <Mixer isPlaying={isPlaying} setVolumes={setVolumes} />
+      <SideBar
+        createMix={createMix}
+        savedMixes={savedMixes}
+        loadMix={loadMix}
+        ResetVolumes={ResetVolumes}
+      />
+      <Mixer isPlaying={isPlaying} setVolumes={setVolumes} volumes={volumes} />
       <ControlBar isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
     </div>
   );
