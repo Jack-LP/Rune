@@ -20,7 +20,7 @@ const Mixer = () => {
   console.log(mix);
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 w-full items-center justify-center'>
       <button
         className='btn btn-primary'
         onClick={() => setIsPlaying((curr) => !curr)}
