@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 
-const AudioCard = ({ path, isPlaying }) => {
+const AudioCard = ({ path, isPlaying, setMix }) => {
   const [volume, setVolume] = useState(0);
   const audioRef = useRef(null);
 
@@ -23,6 +23,16 @@ const AudioCard = ({ path, isPlaying }) => {
 
   const handleVolumeChange = (e) => {
     setVolume(e.target.value);
+    setMix((prev) => ({
+      ...prev,
+      sounds: {
+        ...prev.sounds,
+        [path]: {
+          name: path,
+          volume: e.target.value,
+        },
+      },
+    }));
   };
 
   return (
