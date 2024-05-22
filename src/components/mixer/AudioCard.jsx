@@ -31,13 +31,18 @@ const AudioCard = ({ path, isPlaying, setVolumes, volumes }) => {
   };
 
   return (
-    <div className='flex bg-neutral-900 rounded-lg p-10 flex-col gap-4 items-center justify-center'>
+    <div className='flex bg-neutral-900/50 border-2 border-white/50 rounded-lg p-10 flex-col gap-4 items-center justify-center'>
       <audio ref={audioRef} loop>
         <source
           src={`../../../src-tauri/assets/audio/${path}.mp3`}
           type='audio/mpeg'
         />
       </audio>
+      <img
+        src={`../../../src-tauri/assets/img/${path}.svg`}
+        className='invert'
+        alt=''
+      />
       <p className='capitalize'>{path}</p>
       <input
         type='range'

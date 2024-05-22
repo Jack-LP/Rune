@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
+import MixButton from './MixButton';
 
-const SideBar = ({ createMix, savedMixes, loadMix, ResetVolumes }) => {
+const SideBar = ({
+  createMix,
+  savedMixes,
+  loadMix,
+  ResetVolumes,
+  deleteMix,
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -14,7 +21,7 @@ const SideBar = ({ createMix, savedMixes, loadMix, ResetVolumes }) => {
         />
       ) : null}
       <div className='w-72 bg-neutral-900 flex flex-col p-4 gap-12'>
-        <h1 className='text-3xl self-center'>Tapestry</h1>
+        <h1 className='text-3xl self-center'>sound</h1>
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col gap-2'>
             <h2 className='text-xs text-white/50 pb-4'>MENU</h2>
@@ -36,15 +43,13 @@ const SideBar = ({ createMix, savedMixes, loadMix, ResetVolumes }) => {
               <i className='fa-solid fa-plus'></i>
               <p>Create Mix</p>
             </button>
-            {savedMixes.map((item) => (
-              <button
-                key={item.id}
-                className='flex items-center gap-3'
-                onClick={() => loadMix(item)}
-              >
-                <div className='w-3 h-3 rounded-full bg-blue-500'></div>
-                <p>{item.name}</p>
-              </button>
+            {savedMixes.map((mixItem) => (
+              <MixButton
+                key={mixItem.id}
+                mixItem={mixItem}
+                loadMix={loadMix}
+                deleteMix={deleteMix}
+              />
             ))}
           </div>
         </div>

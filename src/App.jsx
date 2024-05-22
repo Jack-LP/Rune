@@ -24,19 +24,25 @@ const App = () => {
     getFromStorage('savedMixes', 'parse') || []
   );
 
-  const createMix = (mixName) => {
+  const createMix = (mixName, mixColor) => {
     let mix = {
       name: mixName,
       id: uuidv4(),
+      color: mixColor,
       sounds: volumes,
     };
 
     setSavedMixes((prev) => [...prev, mix]);
   };
 
-  const loadMix = (item) => {
-    console.log(item);
-    setVolumes(item.sounds);
+  const deleteMix = (mixItem) => {
+    const filteredMixes = savedMixes.filter((item) => item.id !== mixItem.id);
+    setSavedMixes(filteredMixes);
+  };
+
+  const loadMix = (mixItem) => {
+    console.log(mixItem);
+    setVolumes(mixItem.sounds);
   };
 
   const ResetVolumes = () => {
@@ -51,6 +57,7 @@ const App = () => {
     <div className='h-screen flex text-white'>
       <SideBar
         createMix={createMix}
+        deleteMix={deleteMix}
         savedMixes={savedMixes}
         loadMix={loadMix}
         ResetVolumes={ResetVolumes}

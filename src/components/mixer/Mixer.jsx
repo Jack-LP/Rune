@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AudioCard from './AudioCard';
 
 const Mixer = ({ isPlaying, setVolumes, volumes }) => {

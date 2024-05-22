@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import { HexColorPicker, HexColorInput } from 'react-colorful';
 
 const Modal = ({ setShowModal, createMix }) => {
   const [mixName, setMixName] = useState('New Mix');
+  const [mixColor, setMixColor] = useState('#ffffff');
 
   const handleNameChange = (e) => {
     setMixName(e.target.value);
   };
 
   const handleSaveMix = () => {
-    createMix(mixName);
+    createMix(mixName, mixColor);
     setShowModal(false);
   };
+
+  console.log(mixColor);
 
   return (
     <div
@@ -18,17 +22,34 @@ const Modal = ({ setShowModal, createMix }) => {
       onClick={() => setShowModal(false)}
     >
       <div
-        className='bg-neutral-800 p-4 rounded-md w-72 flex flex-col gap-4'
+        className='bg-neutral-800 p-6 rounded-md w-96 flex flex-col gap-6'
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className='text-lg font-semibold'>Create Mix</h1>
-        <input
-          type='text'
-          placeholder='Mix name'
-          className='bg-transparent border-[1px] border-white/20 rounded-md p-2 outline-none'
-          onChange={handleNameChange}
+        <div className='flex items-center gap-2 w-full'>
+          <div
+            className='w-3 h-3 rounded-full'
+            style={{ backgroundColor: mixColor }}
+          ></div>
+          <input
+            type='text'
+            placeholder='Mix name'
+            className='bg-transparent border-[1px] border-white/20 rounded-md p-2 outline-none w-full'
+            onChange={handleNameChange}
+          />
+        </div>
+        <HexColorPicker
+          color={mixColor}
+          onChange={setMixColor}
+          style={{ width: '100%' }}
         />
-        <div className='flex gap-4'>
+        <HexColorInput
+          color={mixColor}
+          onChange={setMixColor}
+          prefixed
+          className='bg-transparent border-[1px] border-white/20 rounded-md p-2 outline-none w-full'
+        />
+        <div className='flex gap-4 w-full'>
           <button
             className='bg-neutral-700 flex-1 rounded-md p-2'
             onClick={handleSaveMix}
