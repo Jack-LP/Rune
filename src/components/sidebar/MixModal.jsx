@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 
-const Modal = ({ setShowModal, createMix }) => {
+const MixModal = ({ setShowModal, createMix }) => {
   const [mixName, setMixName] = useState('New Mix');
   const [mixColor, setMixColor] = useState('#ffffff');
 
@@ -68,4 +68,4 @@ const Modal = ({ setShowModal, createMix }) => {
   );
 };
 
-export default Modal;
+export default MixModal;

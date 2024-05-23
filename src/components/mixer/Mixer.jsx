@@ -1,11 +1,12 @@
 import React from 'react';
 import AudioCard from './AudioCard';
+import ControlBar from '../controlbar/ControlBar';
 
-const Mixer = ({ isPlaying, setVolumes, volumes }) => {
+const Mixer = ({ isPlaying, setIsPlaying, setVolumes, volumes }) => {
   const sounds = ['birds', 'rain', 'fire', 'thunder', 'waves', 'wind'];
 
   return (
-    <div className='grid grid-cols-3 grid-rows-2 gap-4 w-full p-24 bg-neutral-800'>
+    <div className='grid grid-cols-3 grid-rows-2 gap-10 w-full bg-transparent relative p-32'>
       {sounds.map((sound) => (
         <AudioCard
           path={sound}
@@ -15,6 +16,7 @@ const Mixer = ({ isPlaying, setVolumes, volumes }) => {
           volumes={volumes}
         />
       ))}
+      <ControlBar isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
     </div>
   );
 };

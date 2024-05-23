@@ -2,7 +2,7 @@ import React from 'react';
 
 const ControlBar = ({ isPlaying, setIsPlaying }) => {
   return (
-    <div className='w-full bg-neutral-950 absolute bottom-0 left-0 p-2 flex items-center justify-center'>
+    <div className='bg-neutral-900/50 border-[1px] border-white/50 w-[800px] rounded-md mb-4 absolute left-0 right-0 ml-auto bottom-0 mr-auto p-2 flex items-center justify-center'>
       <button
         className='btn btn-primary text-xl'
         onClick={() => setIsPlaying((curr) => !curr)}

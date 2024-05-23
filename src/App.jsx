@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { getFromStorage, setToStorage } from './utilities/localStorage';
+import { getFromStorage, setToStorage } from './lib/localStorage';
 import SideBar from './components/sidebar/SideBar';
-import ControlBar from './components/controlbar/ControlBar';
 import Mixer from './components/mixer/Mixer';
+import UserButton from './components/user/UserButton';
+import UserModal from './components/user/UserModal';
 
 const App = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   const defaultVolumes = {
     birds: 0,
     fire: 0,
@@ -17,9 +16,9 @@ const App = () => {
     waves: 0,
     wind: 0,
   };
-
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
   const [volumes, setVolumes] = useState(defaultVolumes);
-
   const [savedMixes, setSavedMixes] = useState(
     getFromStorage('savedMixes', 'parse') || []
   );
@@ -54,17 +53,35 @@ const App = () => {
   }, [savedMixes]);
 
   return (
-    <div className='h-screen flex text-white'>
-      <SideBar
-        createMix={createMix}
-        deleteMix={deleteMix}
-        savedMixes={savedMixes}
-        loadMix={loadMix}
-        ResetVolumes={ResetVolumes}
+    <>
+      <img
+        src='https://picsum.photos/1920/1080'
+        alt=''
+        className='fixed w-screen h-screen -z-10'
       />
-      <Mixer isPlaying={isPlaying} setVolumes={setVolumes} volumes={volumes} />
-      <ControlBar isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-    </div>
+      <div className='h-screen flex text-white'>
+        {showUserModal ? (
+          <UserModal
+            setShowUserModal={setShowUserModal}
+            savedMixes={savedMixes}
+          />
+        ) : null}
+        <UserButton setShowUserModal={setShowUserModal} />
+        <SideBar
+          createMix={createMix}
+          deleteMix={deleteMix}
+          savedMixes={savedMixes}
+          loadMix={loadMix}
+          ResetVolumes={ResetVolumes}
+        />
+        <Mixer
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          setVolumes={setVolumes}
+          volumes={volumes}
+        />
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import MixModal from './MixModal';
 import MixButton from './MixButton';
 
 const SideBar = ({
@@ -14,7 +14,7 @@ const SideBar = ({
   return (
     <>
       {showModal ? (
-        <Modal
+        <MixModal
           showModal={showModal}
           setShowModal={setShowModal}
           createMix={createMix}
@@ -24,7 +24,7 @@ const SideBar = ({
         <h1 className='text-3xl self-center'>sound</h1>
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col gap-2'>
-            <h2 className='text-xs text-white/50 pb-4'>MENU</h2>
+            <h2 className='text-xs text-white/50 pb-4 uppercase'>Menu</h2>
             <button className='flex items-center gap-3'>
               <i className='fa-solid fa-house'></i>
               <p>Home</p>
@@ -35,13 +35,15 @@ const SideBar = ({
             </button>
           </div>
           <div className='flex flex-col gap-2'>
-            <h2 className='text-xs text-white/50 pb-4'>SAVED MIXES</h2>
+            <h2 className='text-xs text-white/50 pb-4 uppercase'>
+              My Soundscapes
+            </h2>
             <button
-              className='flex items-center gap-3'
+              className='flex items-center bg-neutral-950/50 rounded-md py-2 px-3 gap-3'
               onClick={() => setShowModal(true)}
             >
               <i className='fa-solid fa-plus'></i>
-              <p>Create Mix</p>
+              <p>Create New</p>
             </button>
             {savedMixes.map((mixItem) => (
               <MixButton
