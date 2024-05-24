@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
-const MixButton = ({ mixItem, loadMix, deleteMix }) => {
+const MixButton = ({ mixItem }) => {
+  const { loadMix, deleteMix, currentMix } = useContext(AppContext);
+
   return (
-    <div className='flex items-center bg-neutral-950/50 rounded-md py-2 px-3'>
+    <div
+      className={`${
+        currentMix === mixItem
+          ? 'bg-white/10 border-[1px] border-white/25'
+          : 'bg-transprent'
+      } rounded-md py-2 px-3 flex items-center gap-2`}
+    >
       <button
         className='flex items-center gap-3'
         onClick={() => loadMix(mixItem)}

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { save } from '@tauri-apps/api/dialog';
 import { v4 as uuidv4 } from 'uuid';
 
-const UserModal = ({ setShowUserModal, savedMixes }) => {
+const UserModal = () => {
+  const { savedMixes } = useContext(AppContext);
+
   const handleExport = async () => {
     const jsonString = JSON.stringify(savedMixes, null, 2);
 
@@ -26,7 +29,7 @@ const UserModal = ({ setShowUserModal, savedMixes }) => {
 
   return (
     <div
-      className='inset-0 bg-neutral-950/75 backdrop-blur-md absolute z-10 flex items-center justify-center'
+      className='inset-0 bg-neutral-950/75 backdrop-blur-md absolute z-20 flex items-center justify-center'
       onClick={() => setShowUserModal(false)}
     >
       <div

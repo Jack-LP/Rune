@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 
-const MixModal = ({ setShowModal, createMix }) => {
+const MixModal = ({ setShowModal }) => {
   const [mixName, setMixName] = useState('New Mix');
   const [mixColor, setMixColor] = useState('#ffffff');
+
+  const { createMix } = useContext(AppContext);
 
   const handleNameChange = (e) => {
     setMixName(e.target.value);
@@ -13,8 +16,6 @@ const MixModal = ({ setShowModal, createMix }) => {
     createMix(mixName, mixColor);
     setShowModal(false);
   };
-
-  console.log(mixColor);
 
   return (
     <div

@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
-const AudioCard = ({ path, isPlaying, setVolumes, volumes }) => {
+const AudioCard = ({ path }) => {
   const [volume, setVolume] = useState(0);
   const audioRef = useRef(null);
+
+  const { isPlaying, setVolumes, volumes } = useContext(AppContext);
 
   useEffect(() => {
     if (audioRef.current) {

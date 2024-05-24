@@ -7,5 +7,13 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
-  prefix: '',
+  theme: {
+    extend: {
+      fontFamily: {
+        Inter: ['Inter'],
+        SpaceMono: ['Space Mono'],
+      },
+    },
+  },
+  plugins: [],
 };
