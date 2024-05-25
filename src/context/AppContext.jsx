@@ -6,12 +6,12 @@ export const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
   const defaultVolumes = {
-    birds: 0,
-    fire: 0,
-    rain: 0,
-    thunder: 0,
-    waves: 0,
-    wind: 0,
+    birds: 0.0,
+    fire: 0.0,
+    rain: 0.0,
+    thunder: 0.0,
+    waves: 0.0,
+    wind: 0.0,
   };
   const defaultUser = {
     name: 'User',
@@ -21,6 +21,7 @@ export const AppWrapper = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [volumes, setVolumes] = useState(defaultVolumes);
+  const [masterVolume, setMasterVolume] = useState(0.5);
   const [currentMix, setCurrentMix] = useState(false);
   const [userInfo, setUserInfo] = useState(
     getFromStorage('userInfo', 'parse') || defaultUser
@@ -61,7 +62,7 @@ export const AppWrapper = ({ children }) => {
     const randomizedVolumes = {};
     for (let key in defaultVolumes) {
       if (defaultVolumes.hasOwnProperty(key)) {
-        randomizedVolumes[key] = Math.random();
+        randomizedVolumes[key] = Math.random() * 1;
       }
     }
     setVolumes(randomizedVolumes);
@@ -93,6 +94,8 @@ export const AppWrapper = ({ children }) => {
         setRandomVolumes,
         userInfo,
         setUserInfo,
+        masterVolume,
+        setMasterVolume,
       }}
     >
       {children}

@@ -5,7 +5,12 @@ const ControlBar = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const intervalRef = useRef(null);
 
-  const { isPlaying, setIsPlaying, currentMix } = useContext(AppContext);
+  const { isPlaying, setIsPlaying, currentMix, masterVolume, setMasterVolume } =
+    useContext(AppContext);
+
+  const handleMasterVolumeChange = (e) => {
+    setMasterVolume(parseFloat(e.target.value));
+  };
 
   useEffect(() => {
     if (isPlaying) {
@@ -26,7 +31,6 @@ const ControlBar = () => {
   }, [isPlaying]);
 
   useEffect(() => {
-    console.log(currentMix);
     setElapsedTime(0);
   }, [currentMix]);
 
@@ -39,8 +43,20 @@ const ControlBar = () => {
     )}`;
   };
 
+  const renderVolumeIcon = () => {
+    if (masterVolume === 0) {
+      return <i className='fa-solid fa-volume-xmark'></i>;
+    } else if (masterVolume < 0.33) {
+      return <i className='fa-solid fa-volume-off'></i>;
+    } else if (masterVolume < 0.66 && masterVolume > 0.33) {
+      return <i className='fa-solid fa-volume-low'></i>;
+    } else if (masterVolume > 0.66) {
+      return <i className='fa-solid fa-volume-high'></i>;
+    }
+  };
+
   return (
-    <div className='bg-neutral-900/50 border-2 border-white/25 w-[840px] rounded-xl mb-4 absolute left-0 right-0 ml-auto bottom-0 mr-auto p-4 flex items-center justify-between'>
+    <div className='bg-neutral-900/50 backdrop-blur-md border-t-2 border-white/25 w-full p-4 flex items-center justify-between'>
       <div className='flex items-center gap-3'>
         <div
           className='w-3 h-3 rounded-full
@@ -65,8 +81,16 @@ const ControlBar = () => {
         )}
       </button>
       <div className='flex gap-3'>
-        <i className='fa-solid fa-volume-low'></i>
-        <input type='range' min={0} max={100} className='w-24 accent-white' />
+        <button onClick={() => setMasterVolume(0)}>{renderVolumeIcon()}</button>
+        <input
+          type='range'
+          min={0}
+          max={1}
+          step={0.01}
+          className='w-24 accent-white'
+          value={masterVolume}
+          onChange={handleMasterVolumeChange}
+        />
       </div>
     </div>
   );

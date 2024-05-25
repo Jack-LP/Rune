@@ -2,60 +2,71 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 const AudioCard = ({ path }) => {
-  const [volume, setVolume] = useState(0);
-  const audioRef = useRef(null);
+  const [cardVolume, setCardVolume] = useState(0);
+  const cardRef = useRef(null);
 
-  const { isPlaying, setVolumes, volumes } = useContext(AppContext);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-    }
-  }, [volume]);
-
-  useEffect(() => {
-    audioRef.current.volume = volumes[path];
-    setVolume(volumes[path]);
-  }, [volumes]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
-      }
-    }
-  }, [isPlaying]);
+  const { isPlaying, setVolumes, volumes, masterVolume } =
+    useContext(AppContext);
 
   const handleVolumeChange = (e) => {
-    setVolume(e.target.value);
-    setVolumes((prev) => ({ ...prev, [path]: e.target.value }));
+    const newVolume = parseFloat(e.target.value);
+    setCardVolume(newVolume);
+    setVolumes((prev) => ({
+      ...prev,
+      [path]: newVolume,
+    }));
   };
 
+  useEffect(() => {
+    isPlaying ? cardRef.current.play() : cardRef.current.pause();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    const effectiveVolume = masterVolume * cardVolume;
+    cardRef.current.volume = effectiveVolume;
+  }, [cardVolume, masterVolume]);
+
+  useEffect(() => {
+    if (volumes[path] !== undefined) {
+      setCardVolume(volumes[path]);
+    }
+  }, [volumes, path]);
+
   return (
-    <div className='flex bg-neutral-900/50 border-2 border-white/50 backdrop-blur-md rounded-lg p-10 flex-col gap-4 items-center justify-center'>
-      <audio ref={audioRef} loop>
+    <div
+      className='flex border-2 border-white/25 rounded-lg flex-col gap-10 items-center justify-center p-12 w-72 backdrop-blur-md'
+      style={{
+        backgroundColor: `rgba(23,23,23,${1 - parseFloat(cardVolume)})`,
+      }}
+    >
+      <audio ref={cardRef} loop>
         <source
           src={`../../../src-tauri/assets/audio/${path}.mp3`}
           type='audio/mpeg'
         />
       </audio>
       <img
-        src={`../../../src-tauri/assets/img/${path}.svg`}
-        className='invert'
+        src={`../../../src-tauri/assets/img/rain.svg`}
         alt=''
+        className='w-36'
       />
-      <p className='capitalize'>{path}</p>
-      <input
-        type='range'
-        className='range'
-        min='0'
-        max='1'
-        step='0.01'
-        value={volume}
-        onChange={handleVolumeChange}
-      />
+      <div className='flex flex-col w-full'>
+        <input
+          type='range'
+          min='0'
+          max='1'
+          step='0.01'
+          value={cardVolume}
+          onChange={handleVolumeChange}
+          className='accent-white'
+        />
+        <div className='flex flex-col'>
+          <p className='capitalize text-lg'>{path}</p>
+          <p className='text-xs text-white/25 font-SpaceMono'>
+            {parseFloat(cardVolume).toFixed(2)}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

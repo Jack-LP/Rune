@@ -45,7 +45,7 @@ const UserModal = () => {
           className='absolute top-4 right-5 text-2xl text-white/50 hover:text-white'
           onClick={() => setShowUserModal(false)}
         >
-          <i class='fa-solid fa-xmark'></i>
+          <i className='fa-solid fa-xmark'></i>
         </button>
         <p className='absolute bottom-2 right-5 text-xs text-white/10 select-none'>
           sound-mixer v1.0.0
@@ -61,7 +61,9 @@ const UserModal = () => {
                 value={userInfo.name}
                 onChange={handleNameChange}
               />
-              <p className='text-white/50'>{savedMixes.length} mixes</p>
+              <p className='text-white/50'>{`${savedMixes.length} ${
+                savedMixes.length > 1 ? 'mixes' : 'mix'
+              }`}</p>
             </div>
           </div>
         </div>

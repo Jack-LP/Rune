@@ -28,7 +28,10 @@ const MixModal = ({ setShowModal }) => {
       >
         <h2 className='text-2xl font-semibold'>New Mix</h2>
         <div className='flex items-center gap-4'>
-          <div className='w-3 h-3 bg-white rounded-full'></div>
+          <div
+            className='w-3 h-3 rounded-full'
+            style={{ backgroundColor: mixColor }}
+          ></div>
           <input
             type='text'
             placeholder='Mix Name'
