@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { getFromStorage, setToStorage } from '../lib/localStorage';
+import { getFromStorage, setToStorage } from '../utilities/localStorage';
 
 export const AppContext = createContext();
 
@@ -13,10 +13,18 @@ export const AppWrapper = ({ children }) => {
     waves: 0,
     wind: 0,
   };
+  const defaultUser = {
+    name: 'User',
+    avatar: '../../src-tauri/assets/img/default-user.jpg',
+    theme: 'default',
+  };
   const [isPlaying, setIsPlaying] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [volumes, setVolumes] = useState(defaultVolumes);
   const [currentMix, setCurrentMix] = useState(false);
+  const [userInfo, setUserInfo] = useState(
+    getFromStorage('userInfo', 'parse') || defaultUser
+  );
   const [savedMixes, setSavedMixes] = useState(
     getFromStorage('savedMixes', 'parse') || []
   );
@@ -41,12 +49,10 @@ export const AppWrapper = ({ children }) => {
     setVolumes(mixItem.sounds);
     setCurrentMix(mixItem);
     setIsPlaying(true);
-    resetElapsedTime();
   };
 
   const resetVolumes = () => {
     setVolumes(defaultVolumes);
-    resetElapsedTime();
     setIsPlaying(false);
     setCurrentMix(false);
   };
@@ -59,15 +65,13 @@ export const AppWrapper = ({ children }) => {
       }
     }
     setVolumes(randomizedVolumes);
-    resetElapsedTime();
     setIsPlaying(true);
   };
 
-  const resetElapsedTime = () => {};
-
   useEffect(() => {
     setToStorage('savedMixes', JSON.stringify(savedMixes));
-  }, [savedMixes, currentMix]);
+    setToStorage('userInfo', JSON.stringify(userInfo));
+  }, [savedMixes, currentMix, userInfo]);
 
   return (
     <AppContext.Provider
@@ -87,7 +91,8 @@ export const AppWrapper = ({ children }) => {
         loadMix,
         resetVolumes,
         setRandomVolumes,
-        resetElapsedTime,
+        userInfo,
+        setUserInfo,
       }}
     >
       {children}

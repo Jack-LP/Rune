@@ -53,6 +53,9 @@ const SideBar = ({}) => {
             ))}
           </div>
         </div>
+        <p className='text-xs text-white/25 absolute bottom-2'>
+          @Jack-LP // Source
+        </p>
       </div>
     </>
   );

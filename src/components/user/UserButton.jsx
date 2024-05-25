@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
-const UserButton = ({ setShowUserModal }) => {
+const UserButton = () => {
+  const { setShowUserModal, userInfo } = useContext(AppContext);
+
   return (
     <img
       onClick={() => setShowUserModal(true)}
-      className='absolute top-4 right-4 rounded-full w-8 h-8 z-10 cursor-pointer'
-      src='../../../src-tauri/assets/img/default-user.jpg'
+      className='absolute top-4 right-4 rounded-full w-10 h-10 z-10 cursor-pointer'
+      src={userInfo.avatar}
     />
   );
 };
