@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import MixModal from './MixModal';
+import SideBarButton from './SideBarButton';
 import MixButton from './MixButton';
 
 const SideBar = ({}) => {
@@ -17,33 +18,24 @@ const SideBar = ({}) => {
         <div className='flex flex-col gap-2'>
           <h2 className='text-lg'>Menu</h2>
           <div className='flex flex-col gap-2'>
-            <button
-              className='rounded-md py-2 px-3 flex items-center gap-2 bg-white/10'
-              onClick={setRandomVolumes}
-            >
+            <SideBarButton func={setRandomVolumes}>
               <i className='fa-solid fa-dice-three'></i>
               <p>Random</p>
-            </button>
-            <button
-              className='rounded-md py-2 px-3 flex items-center gap-2 bg-white/10'
-              onClick={resetVolumes}
-            >
+            </SideBarButton>
+            <SideBarButton func={resetVolumes}>
               <i className='fa-solid fa-rotate-left'></i>
               <p>Reset</p>
-            </button>
+            </SideBarButton>
           </div>
         </div>
         {/* SoundScapes */}
         <div className='flex flex-col gap-4'>
           <h2 className='text-lg'>My Mixes</h2>
           <div className='flex flex-col gap-2'>
-            <button
-              className='bg-white/10 rounded-md py-2 px-3 flex items-center gap-2'
-              onClick={() => setShowModal(true)}
-            >
+            <SideBarButton func={() => setShowModal(true)}>
               <i className='fa-solid fa-plus'></i>
               <p>Create New</p>
-            </button>
+            </SideBarButton>
             {savedMixes.map((mixItem) => (
               <MixButton key={mixItem.id} mixItem={mixItem} />
             ))}

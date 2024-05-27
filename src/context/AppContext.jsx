@@ -18,6 +18,7 @@ export const AppWrapper = ({ children }) => {
     avatar: '../../src-tauri/assets/img/default-user.jpg',
     theme: 'green',
   };
+  const themes = ['default', 'blue', 'green', 'grey', 'orange'];
   const [isPlaying, setIsPlaying] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [volumes, setVolumes] = useState(defaultVolumes);
@@ -99,6 +100,7 @@ export const AppWrapper = ({ children }) => {
         setUserInfo,
         masterVolume,
         setMasterVolume,
+        themes,
       }}
     >
       {children}

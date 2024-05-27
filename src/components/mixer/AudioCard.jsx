@@ -34,7 +34,7 @@ const AudioCard = ({ path }) => {
 
   return (
     <div
-      className='flex border-2 border-white/25 rounded-lg flex-col gap-8 px-12 py-6 items-center justify-center w-[430px] backdrop-blur-md'
+      className='flex border-2 border-white/25 rounded-lg flex-col gap-8 px-12 py-10 items-center justify-center w-[430px] backdrop-blur-md'
       style={{
         backgroundColor: `rgba(23,23,23,${1 - parseFloat(cardVolume)})`,
       }}

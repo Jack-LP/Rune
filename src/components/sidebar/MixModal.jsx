@@ -42,7 +42,7 @@ const MixModal = ({ setShowModal }) => {
           <i className='fa-solid fa-xmark'></i>
         </button>
         <h2 className='text-2xl font-semibold'>Create Mix</h2>
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center gap-4 bg-white/10 rounded-md px-3 py-2'>
           <div
             className='w-3 h-3 rounded-full'
             style={{ backgroundColor: mixColor }}

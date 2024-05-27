@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AppContext } from './context/AppContext';
+import Theme from './components/common/Theme';
 import SideBar from './components/sidebar/SideBar';
 import Mixer from './components/mixer/Mixer';
 import UserButton from './components/user/UserButton';
@@ -7,22 +10,14 @@ import UserModal from './components/user/UserModal';
 import ControlBar from './components/controlbar/ControlBar';
 
 const App = () => {
-  const { showUserModal, userInfo } = useContext(AppContext);
+  const { showUserModal } = useContext(AppContext);
 
   return (
     <>
-      {userInfo.theme !== 'default' ? (
-        <img
-          src={`../src-tauri/assets/img/theme/${userInfo.theme}.jpg`}
-          alt=''
-          className='fixed w-screen h-screen -z-20 blur-xl scale-110'
-        />
-      ) : (
-        <div className='fixed w-screen h-screen -z-20 bg-neutral-800' />
-      )}
+      <Theme />
       <div className='bg-[url("../src-tauri/assets/img/bg-noise.png")] absolute inset-0 -z-10 opacity-10'></div>
       <div className='h-screen flex text-white font-Geist'>
-        {showUserModal ? <UserModal /> : null}
+        {showUserModal && <UserModal />}
         <UserButton />
         <SideBar />
         <div className='flex items-center justify-center w-full'>
@@ -30,6 +25,18 @@ const App = () => {
           <ControlBar />
         </div>
       </div>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={true}
+        theme='dark'
+      />
     </>
   );
 };
