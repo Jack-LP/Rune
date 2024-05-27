@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { toast } from 'react-toastify';
-import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
-import { save } from '@tauri-apps/api/dialog';
+import { writeTextFile, BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
+import { save, open } from '@tauri-apps/api/dialog';
 import { v4 as uuidv4 } from 'uuid';
+import { isValidMixArray } from '../../utilities/importValidation';
 import ThemeButton from './ThemeButton';
 
 const UserModal = () => {
-  const { savedMixes, setShowUserModal, userInfo, setUserInfo, themes } =
-    useContext(AppContext);
+  const {
+    savedMixes,
+    setSavedMixes,
+    setShowUserModal,
+    userInfo,
+    setUserInfo,
+    themes,
+  } = useContext(AppContext);
 
   const handleNameChange = (e) =>
     setUserInfo((prev) => ({ ...prev, name: e.target.value }));
@@ -32,6 +39,42 @@ const UserModal = () => {
       await writeTextFile(filePath, jsonString, {
         dir: BaseDirectory.Download,
       });
+    }
+  };
+
+  const handleImport = async () => {
+    try {
+      const selectedFile = await open({
+        filters: [
+          {
+            name: 'JSON',
+            extensions: ['json'],
+          },
+        ],
+        multiple: false,
+        directory: false,
+      });
+
+      if (selectedFile) {
+        const fileContents = await readTextFile(selectedFile, {
+          dir: BaseDirectory.Download,
+        });
+        const importedMixes = JSON.parse(fileContents);
+
+        if (isValidMixArray(importedMixes)) {
+          const combinedMixes = [...savedMixes, ...importedMixes];
+          setSavedMixes(combinedMixes);
+          toast(
+            `Imported ${importedMixes.length} ${
+              importedMixes.length === 1 ? 'mix' : 'mixes'
+            }!`
+          );
+        } else {
+          toast('Invalid file format. Please upload a valid JSON file.');
+        }
+      }
+    } catch (error) {
+      toast('An error occurred while importing the file. Please try again.');
     }
   };
 
@@ -67,7 +110,7 @@ const UserModal = () => {
       onClick={closeModal}
     >
       <div
-        className='bg-neutral-900 rounded-md p-8 flex flex-col gap-8 relative'
+        className='bg-neutral-900 rounded-md p-8 flex flex-col gap-8 relative border-2 border-white/10'
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -103,15 +146,16 @@ const UserModal = () => {
             <div className='flex flex-col gap-2'>
               <input
                 type='text'
+                maxLength={11}
                 className='bg-transparent outline-none border-[1px] border-white/25 rounded-md p-2'
+                placeholder='Username'
                 value={userInfo.name}
                 onChange={handleNameChange}
               />
-              <p className='text-white/50'>{`${savedMixes.length} ${
-                savedMixes.length > 1 || savedMixes.length == 0
-                  ? 'mixes'
-                  : 'mix'
-              }`}</p>
+              <p className='text-white/50'>
+                <span className='font-GeistMono'>{savedMixes.length}</span>
+                {` ${savedMixes.length === 1 ? 'mix' : 'mixes'}`}
+              </p>
             </div>
           </div>
         </div>
@@ -149,7 +193,10 @@ const UserModal = () => {
               <i className='fa-solid fa-file-export'></i>
               Export
             </button>
-            <button className='bg-neutral-800 rounded-md p-3 flex-1 flex gap-2 items-center justify-center'>
+            <button
+              className='bg-neutral-800 rounded-md p-3 flex-1 flex gap-2 items-center justify-center'
+              onClick={handleImport}
+            >
               <i className='fa-solid fa-file-import'></i>
               Import
             </button>

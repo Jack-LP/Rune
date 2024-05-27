@@ -34,7 +34,7 @@ const AudioCard = ({ path }) => {
 
   return (
     <div
-      className='flex border-2 border-white/25 rounded-lg flex-col gap-8 px-12 py-10 items-center justify-center w-[430px] backdrop-blur-md'
+      className='flex border-2 border-white/10 rounded-lg flex-col gap-8 px-12 py-10 items-center justify-center w-[430px] backdrop-blur-md'
       style={{
         backgroundColor: `rgba(23,23,23,${1 - parseFloat(cardVolume)})`,
       }}
@@ -61,8 +61,16 @@ const AudioCard = ({ path }) => {
           className='accent-white cursor-pointer'
         />
         <div className='flex justify-between items-center'>
-          <p className='capitalize text-lg'>{path}</p>
-          <p className='text-xs text-white/25 font-GeistMono'>
+          <p
+            className='capitalize text-lg'
+            style={{ textShadow: '#171717 0px 0px 15px' }}
+          >
+            {path}
+          </p>
+          <p
+            className='text-xs text-white/25 font-GeistMono'
+            style={{ textShadow: '#171717 0px 0px 15px' }}
+          >
             {parseFloat(cardVolume).toFixed(2)}
           </p>
         </div>

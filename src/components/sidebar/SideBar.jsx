@@ -13,8 +13,7 @@ const SideBar = ({}) => {
     <>
       {showModal ? <MixModal setShowModal={setShowModal} /> : null}
       <div className='w-80 bg-black/20 backdrop-blur-md border-r-2 border-white/25 flex flex-col px-4 gap-10'>
-        <h1 className='text-3xl self-center pt-12 font-semibold'>idk yet</h1>
-        {/* Menu */}
+        <h1 className='text-3xl self-center pt-12 font-semibold'>app name</h1>
         <div className='flex flex-col gap-2'>
           <h2 className='text-lg'>Menu</h2>
           <div className='flex flex-col gap-2'>
@@ -28,22 +27,20 @@ const SideBar = ({}) => {
             </SideBarButton>
           </div>
         </div>
-        {/* SoundScapes */}
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 overflow-y-auto'>
           <h2 className='text-lg'>My Mixes</h2>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 overflow-y-auto'>
             <SideBarButton func={() => setShowModal(true)}>
               <i className='fa-solid fa-plus'></i>
               <p>Create New</p>
             </SideBarButton>
-            {savedMixes.map((mixItem) => (
-              <MixButton key={mixItem.id} mixItem={mixItem} />
-            ))}
+            <div className='flex flex-col gap-2 overflow-y-scroll hide-scrollbar pb-2'>
+              {savedMixes.map((mixItem) => (
+                <MixButton key={mixItem.id} mixItem={mixItem} />
+              ))}
+            </div>
           </div>
         </div>
-        <p className='text-xs text-white/25 absolute bottom-2'>
-          @Jack-LP // Source
-        </p>
       </div>
     </>
   );

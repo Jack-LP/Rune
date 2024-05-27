@@ -32,7 +32,7 @@ const MixModal = ({ setShowModal }) => {
       onClick={() => setShowModal(false)}
     >
       <div
-        className='bg-neutral-900 rounded-md p-8 flex flex-col gap-8 relative w-[450px]'
+        className='bg-neutral-900 rounded-md p-8 flex flex-col gap-8 relative w-[450px] border-2 border-white/10'
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -50,7 +50,7 @@ const MixModal = ({ setShowModal }) => {
           <div className='flex flex-col'>
             <p>{mixName ? mixName : 'New mix'}</p>
             <p className='text-sm text-white/50'>{`${numberOfSounds} ${
-              numberOfSounds > 1 || numberOfSounds == 0 ? 'sounds' : 'sound'
+              numberOfSounds === 1 ? 'sound' : 'sounds'
             }`}</p>
           </div>
         </div>
@@ -58,6 +58,7 @@ const MixModal = ({ setShowModal }) => {
           <p>Name</p>
           <input
             type='text'
+            maxLength={11}
             className='bg-transparent outline-none border-[1px] border-white/25 rounded-md p-2'
             onChange={handleNameChange}
           />
