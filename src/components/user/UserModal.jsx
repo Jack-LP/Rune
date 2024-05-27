@@ -119,9 +119,6 @@ const UserModal = () => {
         >
           <i className='fa-solid fa-xmark'></i>
         </button>
-        <p className='absolute bottom-2 right-5 text-xs text-white/10 select-none font-GeistMono'>
-          sound-mixer v1.0.0
-        </p>
         <div className='flex flex-col gap-4'>
           <h2 className='text-2xl font-semibold'>Profile</h2>
           <div className='flex items-center gap-4'>
@@ -202,6 +199,9 @@ const UserModal = () => {
             </button>
           </div>
         </div>
+        <p className='absolute bottom-2 right-5 text-xs text-white/10 select-none font-GeistMono'>
+          rune v1.0.0
+        </p>
       </div>
     </div>
   );
