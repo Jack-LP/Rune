@@ -12,6 +12,8 @@ module.exports = {
       fontFamily: {
         Inter: ['Inter'],
         SpaceMono: ['Space Mono'],
+        Geist: ['Geist'],
+        GeistMono: ['GeistMono'],
       },
     },
   },

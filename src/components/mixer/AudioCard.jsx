@@ -34,7 +34,7 @@ const AudioCard = ({ path }) => {
 
   return (
     <div
-      className='flex border-2 border-white/25 rounded-lg flex-col gap-10 items-center justify-center p-12 w-72 backdrop-blur-md'
+      className='flex border-2 border-white/25 rounded-lg flex-col gap-8 px-12 py-6 items-center justify-center w-[430px] backdrop-blur-md'
       style={{
         backgroundColor: `rgba(23,23,23,${1 - parseFloat(cardVolume)})`,
       }}
@@ -46,11 +46,11 @@ const AudioCard = ({ path }) => {
         />
       </audio>
       <img
-        src={`../../../src-tauri/assets/img/rain.svg`}
+        src={`../../../src-tauri/assets/img/${path}.svg`}
         alt=''
-        className='w-36'
+        className='w-28 h-28'
       />
-      <div className='flex flex-col w-full'>
+      <div className='flex flex-col w-full gap-2'>
         <input
           type='range'
           min='0'
@@ -58,11 +58,11 @@ const AudioCard = ({ path }) => {
           step='0.01'
           value={cardVolume}
           onChange={handleVolumeChange}
-          className='accent-white'
+          className='accent-white cursor-pointer'
         />
-        <div className='flex flex-col'>
+        <div className='flex justify-between items-center'>
           <p className='capitalize text-lg'>{path}</p>
-          <p className='text-xs text-white/25 font-SpaceMono'>
+          <p className='text-xs text-white/25 font-GeistMono'>
             {parseFloat(cardVolume).toFixed(2)}
           </p>
         </div>

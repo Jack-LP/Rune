@@ -7,20 +7,25 @@ import UserModal from './components/user/UserModal';
 import ControlBar from './components/controlbar/ControlBar';
 
 const App = () => {
-  const { showUserModal } = useContext(AppContext);
+  const { showUserModal, userInfo } = useContext(AppContext);
 
   return (
     <>
-      <img
-        src='https://images.unsplash.com/photo-1476842634003-7dcca8f832de?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-        alt=''
-        className='fixed w-screen h-screen -z-10'
-      />
-      <div className='h-screen flex text-white font-Inter'>
+      {userInfo.theme !== 'default' ? (
+        <img
+          src={`../src-tauri/assets/img/theme/${userInfo.theme}.jpg`}
+          alt=''
+          className='fixed w-screen h-screen -z-20 blur-xl scale-110'
+        />
+      ) : (
+        <div className='fixed w-screen h-screen -z-20 bg-neutral-800' />
+      )}
+      <div className='bg-[url("../src-tauri/assets/img/bg-noise.png")] absolute inset-0 -z-10 opacity-10'></div>
+      <div className='h-screen flex text-white font-Geist'>
         {showUserModal ? <UserModal /> : null}
         <UserButton />
         <SideBar />
-        <div className='grid grid-rows-[1fr_auto] h-full w-full items-center'>
+        <div className='flex items-center justify-center w-full'>
           <Mixer />
           <ControlBar />
         </div>

@@ -46,9 +46,9 @@ const ControlBar = () => {
   const renderVolumeIcon = () => {
     if (masterVolume === 0) {
       return <i className='fa-solid fa-volume-xmark'></i>;
-    } else if (masterVolume < 0.33) {
+    } else if (masterVolume <= 0.33) {
       return <i className='fa-solid fa-volume-off'></i>;
-    } else if (masterVolume < 0.66 && masterVolume > 0.33) {
+    } else if (masterVolume <= 0.66 && masterVolume > 0.33) {
       return <i className='fa-solid fa-volume-low'></i>;
     } else if (masterVolume > 0.66) {
       return <i className='fa-solid fa-volume-high'></i>;
@@ -56,7 +56,7 @@ const ControlBar = () => {
   };
 
   return (
-    <div className='bg-neutral-900/50 backdrop-blur-md border-t-2 border-white/25 w-full p-4 flex items-center justify-between'>
+    <div className='bg-black/20 backdrop-blur-md border-2 rounded-md border-white/25 px-4 h-16 w-[800px] flex items-center justify-between absolute bottom-4'>
       <div className='flex items-center gap-3'>
         <div
           className='w-3 h-3 rounded-full
@@ -65,13 +65,13 @@ const ControlBar = () => {
         ></div>
         <div className='flex flex-col'>
           <p>{currentMix ? currentMix.name : null}</p>
-          <p className='text-sm text-white/50 font-SpaceMono'>
+          <p className='text-sm text-white/50 font-GeistMono'>
             {formatTime(elapsedTime)}
           </p>
         </div>
       </div>
       <button
-        className='text-lg bg-white/10 w-10 h-10 rounded-full'
+        className='text-lg bg-white/10 w-10 h-10 rounded-full absolute left-0 right-0 ml-auto mr-auto'
         onClick={() => setIsPlaying((curr) => !curr)}
       >
         {isPlaying ? (
@@ -80,14 +80,19 @@ const ControlBar = () => {
           <i className='fa-solid fa-play'></i>
         )}
       </button>
-      <div className='flex gap-3'>
-        <button onClick={() => setMasterVolume(0)}>{renderVolumeIcon()}</button>
+      <div className='flex gap-3 relative'>
+        <button
+          className='absolute -top-1 -left-6'
+          onClick={() => setMasterVolume(0)}
+        >
+          {renderVolumeIcon()}
+        </button>
         <input
           type='range'
           min={0}
           max={1}
           step={0.01}
-          className='w-24 accent-white'
+          className='w-24 bg-white cursor-pointer'
           value={masterVolume}
           onChange={handleMasterVolumeChange}
         />

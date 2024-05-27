@@ -11,25 +11,21 @@ const SideBar = ({}) => {
   return (
     <>
       {showModal ? <MixModal setShowModal={setShowModal} /> : null}
-      <div className='w-80 bg-zinc-900/50 backdrop-blur-md border-r-[1px] border-white/25 flex flex-col px-4 gap-12'>
-        <h1 className='text-3xl self-center pt-12 font-semibold'>loom</h1>
+      <div className='w-80 bg-black/20 backdrop-blur-md border-r-2 border-white/25 flex flex-col px-4 gap-10'>
+        <h1 className='text-3xl self-center pt-12 font-semibold'>idk yet</h1>
         {/* Menu */}
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-2'>
           <h2 className='text-lg'>Menu</h2>
           <div className='flex flex-col gap-2'>
-            <button className='bg-white/10 border-[1px] border-white/25 rounded-md py-2 px-3 flex items-center gap-2'>
-              <i className='fa-solid fa-sliders'></i>
-              <p>Mixer</p>
-            </button>
             <button
-              className='rounded-md py-2 px-3 flex items-center gap-2'
+              className='rounded-md py-2 px-3 flex items-center gap-2 bg-white/10'
               onClick={setRandomVolumes}
             >
               <i className='fa-solid fa-dice-three'></i>
               <p>Random</p>
             </button>
             <button
-              className='rounded-md py-2 px-3 flex items-center gap-2'
+              className='rounded-md py-2 px-3 flex items-center gap-2 bg-white/10'
               onClick={resetVolumes}
             >
               <i className='fa-solid fa-rotate-left'></i>
@@ -39,10 +35,10 @@ const SideBar = ({}) => {
         </div>
         {/* SoundScapes */}
         <div className='flex flex-col gap-4'>
-          <h2 className='text-lg'>My SoundScapes</h2>
+          <h2 className='text-lg'>My Mixes</h2>
           <div className='flex flex-col gap-2'>
             <button
-              className='bg-white/10 border-[1px] border-white/25 rounded-md py-2 px-3 flex items-center gap-2'
+              className='bg-white/10 rounded-md py-2 px-3 flex items-center gap-2'
               onClick={() => setShowModal(true)}
             >
               <i className='fa-solid fa-plus'></i>

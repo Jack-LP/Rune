@@ -16,12 +16,14 @@ export const AppWrapper = ({ children }) => {
   const defaultUser = {
     name: 'User',
     avatar: '../../src-tauri/assets/img/default-user.jpg',
-    theme: 'default',
+    theme: 'green',
   };
   const [isPlaying, setIsPlaying] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [volumes, setVolumes] = useState(defaultVolumes);
-  const [masterVolume, setMasterVolume] = useState(0.5);
+  const [masterVolume, setMasterVolume] = useState(
+    getFromStorage('masterVolume') || 0.65
+  );
   const [currentMix, setCurrentMix] = useState(false);
   const [userInfo, setUserInfo] = useState(
     getFromStorage('userInfo', 'parse') || defaultUser
@@ -72,7 +74,8 @@ export const AppWrapper = ({ children }) => {
   useEffect(() => {
     setToStorage('savedMixes', JSON.stringify(savedMixes));
     setToStorage('userInfo', JSON.stringify(userInfo));
-  }, [savedMixes, currentMix, userInfo]);
+    setToStorage('masterVolume', masterVolume);
+  }, [savedMixes, currentMix, userInfo, masterVolume]);
 
   return (
     <AppContext.Provider

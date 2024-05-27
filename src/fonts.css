@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Geist';
+  src: url('../src-tauri/assets/fonts/geist-sans/GeistVF.woff2') format('woff2'),
+    url('../src-tauri/assets/fonts/geist-sans/GeistVF.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GeistMono';
+  src: url('../src-tauri/assets/fonts/geist-mono/GeistMonoVF.woff2')
+      format('woff2'),
+    url('../src-tauri/assets/fonts/geist-mono/GeistMonoVF.woff') format('woff');
+}

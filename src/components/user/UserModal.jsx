@@ -3,10 +3,13 @@ import { AppContext } from '../../context/AppContext';
 import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { save } from '@tauri-apps/api/dialog';
 import { v4 as uuidv4 } from 'uuid';
+import ThemeButton from './ThemeButton';
 
 const UserModal = () => {
   const { savedMixes, setShowUserModal, userInfo, setUserInfo } =
     useContext(AppContext);
+
+  const themes = ['default', 'blue', 'green', 'grey', 'orange'];
 
   const handleNameChange = (e) => {
     setUserInfo((prev) => ({ ...prev, name: e.target.value }));
@@ -47,7 +50,7 @@ const UserModal = () => {
         >
           <i className='fa-solid fa-xmark'></i>
         </button>
-        <p className='absolute bottom-2 right-5 text-xs text-white/10 select-none'>
+        <p className='absolute bottom-2 right-5 text-xs text-white/10 select-none font-GeistMono'>
           sound-mixer v1.0.0
         </p>
         <div className='flex flex-col gap-4'>
@@ -62,7 +65,9 @@ const UserModal = () => {
                 onChange={handleNameChange}
               />
               <p className='text-white/50'>{`${savedMixes.length} ${
-                savedMixes.length > 1 ? 'mixes' : 'mix'
+                savedMixes.length > 1 || savedMixes.length == 0
+                  ? 'mixes'
+                  : 'mix'
               }`}</p>
             </div>
           </div>
@@ -71,15 +76,13 @@ const UserModal = () => {
           <h2 className='text-2xl font-semibold'>Settings</h2>
           <div className='flex flex-col gap-2'>
             <p className='text-white/50'>Select Theme:</p>
-            <div className='grid grid-rows-2 grid-cols-4 gap-2 w-64'>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
-              <div className='w-14 h-14 rounded-md bg-neutral-800'></div>
+            <div className='grid grid-rows-2 grid-cols-3 gap-2 self-start'>
+              {themes.map((theme) => (
+                <ThemeButton key={theme} theme={theme} />
+              ))}
+              <button className='w-14 h-14 rounded-md bg-neutral-800 flex items-center justify-center text-xl'>
+                <i className='fa-solid fa-plus'></i>
+              </button>
             </div>
           </div>
 
