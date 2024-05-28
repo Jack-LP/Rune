@@ -45,13 +45,33 @@ const ControlBar = () => {
 
   const renderVolumeIcon = () => {
     if (masterVolume === 0) {
-      return <i className='fa-solid fa-volume-xmark'></i>;
+      return (
+        <img
+          src='/assets/img/icons/volume-xmark.svg'
+          className='invert w-[18px]'
+        />
+      );
     } else if (masterVolume <= 0.33) {
-      return <i className='fa-solid fa-volume-off'></i>;
+      return (
+        <img
+          src='/assets/img/icons/volume-low.svg'
+          className='invert w-[10px]'
+        />
+      );
     } else if (masterVolume <= 0.66 && masterVolume > 0.33) {
-      return <i className='fa-solid fa-volume-low'></i>;
+      return (
+        <img
+          src='/assets/img/icons/volume-med.svg'
+          className='invert w-[14px]'
+        />
+      );
     } else if (masterVolume > 0.66) {
-      return <i className='fa-solid fa-volume-high'></i>;
+      return (
+        <img
+          src='/assets/img/icons/volume-high.svg'
+          className='invert w-[19px]'
+        />
+      );
     }
   };
 
@@ -71,20 +91,17 @@ const ControlBar = () => {
         </div>
       </div>
       <button
-        className='text-lg bg-white/10 w-10 h-10 rounded-full absolute left-0 right-0 ml-auto mr-auto'
+        className='text-lg bg-white/10 w-10 h-10 rounded-full absolute left-0 right-0 ml-auto mr-auto flex items-center justify-center'
         onClick={() => setIsPlaying((curr) => !curr)}
       >
         {isPlaying ? (
-          <i className='fa-solid fa-pause'></i>
+          <img src='/assets/img/icons/pause.svg' className='invert w-3' />
         ) : (
-          <i className='fa-solid fa-play'></i>
+          <img src='/assets/img/icons/play.svg' className='invert w-3' />
         )}
       </button>
-      <div className='flex gap-3 relative'>
-        <button
-          className='absolute -top-1 -left-6'
-          onClick={() => setMasterVolume(0)}
-        >
+      <div className='flex items-center gap-3 relative'>
+        <button className='absolute -left-6' onClick={() => setMasterVolume(0)}>
           {renderVolumeIcon()}
         </button>
         <input

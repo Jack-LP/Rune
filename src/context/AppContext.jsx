@@ -14,8 +14,8 @@ export const AppWrapper = ({ children }) => {
     wind: 0.0,
   };
   const defaultUser = {
-    name: 'User',
-    avatar: '../../src-tauri/assets/img/default-user.jpg',
+    name: '',
+    avatar: '/assets/img/default-user.jpg',
     theme: 'green',
   };
   const themes = ['default', 'blue', 'green', 'grey', 'orange'];

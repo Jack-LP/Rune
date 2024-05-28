@@ -14,18 +14,14 @@ const SideBar = ({}) => {
       {showModal ? <MixModal setShowModal={setShowModal} /> : null}
       <div className='w-80 bg-black/20 backdrop-blur-md border-r-2 border-white/25 flex flex-col px-4 gap-10 pt-10'>
         <div className='flex self-center items-center gap-1'>
-          <img
-            src='../../../src-tauri/assets/img/Rune.svg'
-            alt=''
-            className='w-6'
-          />
-          <h1 className='text-3xl font-semibold'>Rune</h1>
+          <img src='/assets/img/Rune.svg' alt='' className='w-7' />
+          <h1 className='text-4xl font-semibold'>Rune</h1>
         </div>
         <div className='flex flex-col gap-2'>
           <h2 className='text-lg'>Menu</h2>
           <div className='flex flex-col gap-2'>
             <SideBarButton func={setRandomVolumes}>
-              <i className='fa-solid fa-dice-three'></i>
+              <i className='fa-solid fa-dice-four'></i>
               <p>Random</p>
             </SideBarButton>
             <SideBarButton func={resetVolumes}>

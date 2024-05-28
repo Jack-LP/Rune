@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
       <Theme />
-      <div className='bg-[url("../src-tauri/assets/img/bg-noise.png")] absolute inset-0 -z-10 opacity-10'></div>
+      <div className='bg-[url("/assets/img/bg-noise.png")] absolute inset-0 -z-10 opacity-10'></div>
       <div className='h-screen flex text-white font-Geist'>
         {showUserModal && <UserModal />}
         <UserButton />

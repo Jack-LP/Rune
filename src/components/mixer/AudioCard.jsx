@@ -40,16 +40,9 @@ const AudioCard = ({ path }) => {
       }}
     >
       <audio ref={cardRef} loop>
-        <source
-          src={`../../../src-tauri/assets/audio/${path}.mp3`}
-          type='audio/mpeg'
-        />
+        <source src={`/assets/audio/${path}.mp3`} type='audio/mpeg' />
       </audio>
-      <img
-        src={`../../../src-tauri/assets/img/${path}.svg`}
-        alt=''
-        className='w-28 h-28'
-      />
+      <img src={`/assets/img/${path}.svg`} alt='' className='w-28 h-28' />
       <div className='flex flex-col w-full gap-2'>
         <input
           type='range'

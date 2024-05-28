@@ -11,7 +11,7 @@ const Theme = () => {
   if (themes.includes(theme)) {
     return (
       <img
-        src={`../src-tauri/assets/img/theme/${theme}.jpg`}
+        src={`/assets/img/theme/${theme}.jpg`}
         alt=''
         className='fixed w-screen h-screen -z-20 blur-xl scale-110'
       />
