@@ -1,9 +1,13 @@
-import SideBar from './components/sidebar/SideBar';
+import SideBar from "./components/sidebar/SideBar";
+import MainSection from "./components/mainSection/MainSection";
 
 function App() {
   return (
-    <div className='h-screen bg-neutral-900 text-white font-Geist'>
+    <div className="flex h-screen bg-neutral-900 font-Geist text-white">
       <SideBar />
+      <div className="flex w-full bg-neutral-900 p-28">
+        <MainSection />
+      </div>
     </div>
   );
 }
