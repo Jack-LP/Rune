@@ -2,7 +2,15 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Geist: ['Geist'],
+        GeistMono: ['Geist Mono'],
+      },
+      borderWidth: {
+        1: '1px',
+      },
+    },
   },
   plugins: [],
 };
