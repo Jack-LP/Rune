@@ -2,8 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 
 const SoundItem = ({ soundName }) => {
-  const { currentVolumes, setCurrentVolumes, isPlaying } =
-    useContext(AppContext);
+  const { setCurrentVolumes, isPlaying, masterVolume } = useContext(AppContext);
 
   const [itemVolume, setItemVolume] = useState(0);
   const itemRef = useRef(null);
@@ -26,8 +25,9 @@ const SoundItem = ({ soundName }) => {
   }, [isPlaying]);
 
   useEffect(() => {
-    itemRef.current.volume = itemVolume;
-  }, [itemVolume]);
+    const effectiveVolume = itemVolume * masterVolume;
+    itemRef.current.volume = effectiveVolume;
+  }, [itemVolume, masterVolume]);
 
   return (
     <div className="flex w-full items-center justify-between gap-4">
@@ -49,9 +49,9 @@ const SoundItem = ({ soundName }) => {
           </div>
           <input
             type="range"
-            min="0"
-            max="1"
-            step="0.01"
+            min={0}
+            max={1}
+            step={0.01}
             value={itemVolume}
             onChange={handleVolumeChange}
             className="cursor-pointer accent-white"

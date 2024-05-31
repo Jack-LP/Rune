@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import presetData from "../data/presets";
 
 export const AppContext = createContext();
 
@@ -25,8 +26,11 @@ export const AppWrapper = ({ children }) => {
     pen: 0.0,
   };
 
+  const presets = presetData;
+
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [masterVolume, setMasterVolume] = useState(0.65);
 
   return (
     <AppContext.Provider
@@ -36,6 +40,9 @@ export const AppWrapper = ({ children }) => {
         setCurrentVolumes,
         isPlaying,
         setIsPlaying,
+        masterVolume,
+        setMasterVolume,
+        presets,
       }}
     >
       {children}
