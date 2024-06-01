@@ -1,10 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import MenuButton from "./MenuButton";
 import ItemButton from "./ItemButton";
+import CreationModal from "./CreationModal";
 
 const SideBar = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCreateNew = () => {
+    setShowModal(true);
+  };
+
   return (
     <>
+      {showModal && <CreationModal setShowModal={setShowModal} />}
       <div className="flex h-full w-[250px] flex-col items-center border-r-1 border-white border-white/25 px-4">
         <div className="flex w-full justify-center border-b-1 border-white/25 py-4">
           <h1 className="text-xl font-semibold">App Name</h1>
@@ -21,7 +29,10 @@ const SideBar = () => {
           </MenuButton>
         </div>
         <div className="flex w-full flex-col py-4">
-          <button className="flex w-full gap-2 rounded-md p-1 hover:bg-white/10">
+          <button
+            className="flex w-full gap-2 rounded-md p-1 hover:bg-white/10"
+            onClick={handleCreateNew}
+          >
             Create New
           </button>
           <ItemButton />

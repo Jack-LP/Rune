@@ -4,7 +4,7 @@ import ControlBar from "./components/mainSection/controlBar/ControlBar";
 
 function App() {
   return (
-    <div className="flex h-screen overflow-y-scroll bg-neutral-900 font-Geist text-white">
+    <div className="hide-scrollbar flex h-screen overflow-y-scroll bg-neutral-900 font-Geist text-white">
       <SideBar />
       <div className="relative flex w-full bg-neutral-900 p-28">
         <MainSection />

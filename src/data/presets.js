@@ -229,4 +229,4 @@ const presetData = [
   },
 ];
 
-export default presets;
+export default presetData;
