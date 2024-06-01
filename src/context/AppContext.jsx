@@ -1,49 +1,54 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 import presetData from "../data/presets";
 import { v4 as uuidv4 } from "uuid";
+import { getFromStorage, setToStorage } from "../utilities/localStorage";
 
 export const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
-  const sounds = [
-    "birds",
-    "fire",
-    "rain",
-    "river",
-    "thunder",
-    "waves",
-    "wind",
-    "pen",
-  ];
+  const sounds = useMemo(
+    () => ["birds", "fire", "rain", "river", "thunder", "waves", "wind", "pen"],
+    [],
+  );
 
-  const defaultVolumes = {
-    birds: 0.0,
-    fire: 0.0,
-    rain: 0.0,
-    river: 0.0,
-    thunder: 0.0,
-    waves: 0.0,
-    wind: 0.0,
-    pen: 0.0,
-  };
+  const defaultVolumes = useMemo(
+    () => ({
+      birds: 0.0,
+      fire: 0.0,
+      rain: 0.0,
+      river: 0.0,
+      thunder: 0.0,
+      waves: 0.0,
+      wind: 0.0,
+      pen: 0.0,
+    }),
+    [],
+  );
 
-  const presets = presetData;
+  const presets = useMemo(() => presetData, []);
 
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
   const [isPlaying, setIsPlaying] = useState(false);
   const [masterVolume, setMasterVolume] = useState(0.65);
-  const [savedSoundscapes, setSavedSoundscapes] = useState([]);
+  const [savedSoundscapes, setSavedSoundscapes] = useState(() => {
+    const saved = getFromStorage("savedSoundscapes", "parse");
+    return saved ? saved : [];
+  });
 
   const createSoundscape = (name, color) => {
     let soundscape = {
-      name: name,
+      name,
       id: uuidv4(),
-      color: color,
+      color,
       sounds: currentVolumes,
     };
 
     setSavedSoundscapes((prev) => [...prev, soundscape]);
   };
+
+  useEffect(() => {
+    setToStorage("savedSoundscapes", JSON.stringify(savedSoundscapes));
+  }, [savedSoundscapes]);
 
   return (
     <AppContext.Provider

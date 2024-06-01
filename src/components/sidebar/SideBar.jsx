@@ -38,9 +38,10 @@ const SideBar = () => {
           >
             Create New
           </button>
-          {savedSoundscapes.map((item) => (
-            <ItemButton key={item.id} item={item} />
-          ))}
+          {savedSoundscapes &&
+            savedSoundscapes.map((item) => (
+              <ItemButton key={item.id} item={item} />
+            ))}
         </div>
       </div>
       <p className="fixed bottom-2 left-2 font-GeistMono text-xs text-white/25">
