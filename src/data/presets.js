@@ -1,231 +1,93 @@
 const presetData = [
   {
-    id: 1,
-    name: "Serene Waterside",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.5,
-      },
-      {
-        name: "Rain",
-        volume: 0.2,
-      },
-      {
-        name: "Fire",
-        volume: 0.0,
-      },
-      {
-        name: "Thunder",
-        volume: 0.0,
-      },
-      {
-        name: "Waves",
-        volume: 0.7,
-      },
-      {
-        name: "Wind",
-        volume: 0.4,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.6,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.0,
-      },
-    ],
+    name: "Serene waterside",
+    id: "d9d4d7af-3c4e-4567-a96f-b8f5cb8a7f92",
+    color: "#1e90ff",
+    sounds: {
+      birds: 0.5,
+      rain: 0.2,
+      fire: 0.0,
+      thunder: 0.0,
+      waves: 0.7,
+      wind: 0.4,
+      river: 0.6,
+      pen: 0.0,
+    },
   },
   {
-    id: 2,
-    name: "Stormy Night Writing",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.0,
-      },
-      {
-        name: "Rain",
-        volume: 0.7,
-      },
-      {
-        name: "Fire",
-        volume: 0.0,
-      },
-      {
-        name: "Thunder",
-        volume: 0.6,
-      },
-      {
-        name: "Waves",
-        volume: 0.0,
-      },
-      {
-        name: "Wind",
-        volume: 0.5,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.0,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.4,
-      },
-    ],
+    name: "Stormy study",
+    id: "9f13bb91-f4a3-4d57-9b89-d6c937a95b3a",
+    color: "#2f4f4f",
+    sounds: {
+      birds: 0.0,
+      rain: 0.7,
+      fire: 0.0,
+      thunder: 0.6,
+      waves: 0.0,
+      wind: 0.5,
+      river: 0.0,
+      pen: 0.4,
+    },
   },
   {
-    id: 3,
-    name: "Campfire by the Stream",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.2,
-      },
-      {
-        name: "Rain",
-        volume: 0.0,
-      },
-      {
-        name: "Fire",
-        volume: 0.6,
-      },
-      {
-        name: "Thunder",
-        volume: 0.0,
-      },
-      {
-        name: "Waves",
-        volume: 0.0,
-      },
-      {
-        name: "Wind",
-        volume: 0.3,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.5,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.0,
-      },
-    ],
+    name: "Riverside camp",
+    id: "bc2aeacd-4d6b-40cb-b36b-7b3c7af74962",
+    color: "#cd853f",
+    sounds: {
+      birds: 0.2,
+      rain: 0.0,
+      fire: 0.6,
+      thunder: 0.0,
+      waves: 0.0,
+      wind: 0.3,
+      river: 0.5,
+      pen: 0.0,
+    },
   },
   {
-    id: 4,
-    name: "Gentle Rainforest Writing",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.5,
-      },
-      {
-        name: "Rain",
-        volume: 0.4,
-      },
-      {
-        name: "Fire",
-        volume: 0.0,
-      },
-      {
-        name: "Thunder",
-        volume: 0.0,
-      },
-      {
-        name: "Waves",
-        volume: 0.0,
-      },
-      {
-        name: "Wind",
-        volume: 0.3,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.6,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.4,
-      },
-    ],
+    name: "Rainforest",
+    id: "6e7e9a7a-9a6b-4f9a-9b0e-9b9e7c7b9e7c",
+    color: "#228b22",
+    sounds: {
+      birds: 0.5,
+      rain: 0.4,
+      fire: 0.0,
+      thunder: 0.0,
+      waves: 0.0,
+      wind: 0.3,
+      river: 0.6,
+      pen: 0.0,
+    },
   },
   {
-    id: 5,
-    name: "Ocean Breeze",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.3,
-      },
-      {
-        name: "Rain",
-        volume: 0.0,
-      },
-      {
-        name: "Fire",
-        volume: 0.0,
-      },
-      {
-        name: "Thunder",
-        volume: 0.0,
-      },
-      {
-        name: "Waves",
-        volume: 0.7,
-      },
-      {
-        name: "Wind",
-        volume: 0.5,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.0,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.0,
-      },
-    ],
+    name: "Ocean breeze",
+    id: "ed7a8a7b-8a7a-4b8a-b8b8-8a7b8a7b8a7b",
+    color: "#00bfff",
+    sounds: {
+      birds: 0.3,
+      rain: 0.0,
+      fire: 0.0,
+      thunder: 0.0,
+      waves: 0.7,
+      wind: 0.5,
+      river: 0.0,
+      pen: 0.0,
+    },
   },
   {
-    id: 6,
-    name: "Peaceful Study",
-    sounds: [
-      {
-        name: "Birds",
-        volume: 0.0,
-      },
-      {
-        name: "Rain",
-        volume: 0.3,
-      },
-      {
-        name: "Fire",
-        volume: 0.0,
-      },
-      {
-        name: "Thunder",
-        volume: 0.0,
-      },
-      {
-        name: "Waves",
-        volume: 0.0,
-      },
-      {
-        name: "Wind",
-        volume: 0.2,
-      },
-      {
-        name: "Water Stream",
-        volume: 0.0,
-      },
-      {
-        name: "Pen Writing",
-        volume: 0.7,
-      },
-    ],
+    name: "Peaceful study",
+    id: "c7b7c7c7-c7c7-4c7c-c7c7-7c7b7c7b7c7b",
+    color: "#dda0dd",
+    sounds: {
+      birds: 0.0,
+      rain: 0.3,
+      fire: 0.0,
+      thunder: 0.0,
+      waves: 0.0,
+      wind: 0.2,
+      river: 0.0,
+      pen: 0.7,
+    },
   },
 ];
 

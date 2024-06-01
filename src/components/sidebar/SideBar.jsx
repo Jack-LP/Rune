@@ -5,7 +5,7 @@ import SoundScapeButton from "./SoundScapeButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
-  const { savedSoundscapes } = useContext(AppContext);
+  const { savedSoundscapes, presets } = useContext(AppContext);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -38,6 +38,10 @@ const SideBar = () => {
           >
             Create New
           </button>
+          {}
+          {presets.map((soundScape) => (
+            <SoundScapeButton key={soundScape.id} soundScape={soundScape} />
+          ))}
           {savedSoundscapes &&
             savedSoundscapes.map((soundScape) => (
               <SoundScapeButton key={soundScape.id} soundScape={soundScape} />

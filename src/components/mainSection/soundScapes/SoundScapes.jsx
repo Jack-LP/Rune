@@ -3,7 +3,12 @@ import { AppContext } from "../../../context/AppContext";
 import SoundScapeCard from "./SoundscapeCard";
 
 const SoundScapes = () => {
-  const { presets, savedSoundscapes } = useContext(AppContext);
+  const { presets, savedSoundscapes, loadSoundScape } = useContext(AppContext);
+
+  const handleClick = (soundScape) => {
+    loadSoundScape(soundScape);
+    console.log(soundScape);
+  };
 
   return (
     <div className="hide-scrollbar flex w-full flex-col gap-4 overflow-y-scroll rounded-md border-1 border-white/25 p-8">
@@ -12,8 +17,12 @@ const SoundScapes = () => {
         <p className="text-white/50">Presets</p>
         <div className="flex gap-2">
           {presets.map((preset) => (
-            <button key={preset.id} className="h-14 w-14 rounded-md border-1">
-              {preset.id}
+            <button
+              key={preset.id}
+              onClick={() => handleClick(preset)}
+              className="h-14 w-14 rounded-md border-1"
+            >
+              <p>3</p>
             </button>
           ))}
         </div>
