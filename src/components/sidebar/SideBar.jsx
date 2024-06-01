@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import MenuButton from "./MenuButton";
 import ItemButton from "./ItemButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
+  const { savedSoundscapes } = useContext(AppContext);
+
   const [showModal, setShowModal] = useState(false);
 
   const handleCreateNew = () => {
@@ -35,11 +38,9 @@ const SideBar = () => {
           >
             Create New
           </button>
-          <ItemButton />
-          <ItemButton />
-          <ItemButton />
-          <ItemButton />
-          <ItemButton />
+          {savedSoundscapes.map((item) => (
+            <ItemButton key={item.id} item={item} />
+          ))}
         </div>
       </div>
       <p className="fixed bottom-2 left-2 font-GeistMono text-xs text-white/25">

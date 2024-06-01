@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { AppContext } from "../../context/AppContext";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
 const CreationModal = ({ setShowModal }) => {
+  const { savedSoundscapes, createSoundscape, currentVolumes } =
+    useContext(AppContext);
+
   const [color, setColor] = useState("#3d7d6e");
+  const [name, setName] = useState("New SoundScape");
+  const [numberOfSounds, setNumberOfSounds] = useState(0);
 
   const handleClose = () => {
     setShowModal(false);
   };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleSave = () => {
+    createSoundscape(name, color);
+    handleClose();
+  };
+
+  useEffect(() => {
+    setNumberOfSounds(
+      Object.keys(currentVolumes).filter((key) => currentVolumes[key] > 0)
+        .length,
+    );
+  }, [currentVolumes]);
 
   return (
     <div
@@ -30,9 +52,10 @@ const CreationModal = ({ setShowModal }) => {
             style={{ backgroundColor: color }}
           ></div>
           <div className="flex flex-col">
-            <p>New Mix</p>
+            <p>{name ? name : "New SoundScape"}</p>
             <p className="text-sm text-white/50">
-              <span className="font-GeistMono">0</span> sounds
+              <span className="font-GeistMono">{numberOfSounds}</span>{" "}
+              {`${numberOfSounds === 1 ? "sound" : "sounds"}`}
             </p>
           </div>
         </div>
@@ -40,6 +63,9 @@ const CreationModal = ({ setShowModal }) => {
           <p>Name</p>
           <input
             type="text"
+            value={name}
+            placeholder="New SoundScape"
+            onChange={(e) => handleNameChange(e)}
             className="rounded-md border-1 border-white/25 bg-transparent p-2 outline-none"
           />
         </div>
@@ -57,7 +83,10 @@ const CreationModal = ({ setShowModal }) => {
           />
         </div>
         <div className="flex gap-4">
-          <button className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3">
+          <button
+            onClick={handleSave}
+            className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3"
+          >
             Save
           </button>
           <button
