@@ -46,6 +46,13 @@ export const AppWrapper = ({ children }) => {
     setSavedSoundscapes((prev) => [...prev, soundscape]);
   };
 
+  const loadSoundScape = (soundScape) => {
+    if (currentVolumes !== soundScape.sounds) {
+      setCurrentVolumes(soundScape.sounds);
+      setIsPlaying(true);
+    }
+  };
+
   useEffect(() => {
     setToStorage("savedSoundscapes", JSON.stringify(savedSoundscapes));
   }, [savedSoundscapes]);
@@ -64,6 +71,7 @@ export const AppWrapper = ({ children }) => {
         savedSoundscapes,
         setSavedSoundscapes,
         createSoundscape,
+        loadSoundScape,
       }}
     >
       {children}

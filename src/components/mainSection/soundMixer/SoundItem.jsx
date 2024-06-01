@@ -2,7 +2,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 
 const SoundItem = ({ soundName }) => {
-  const { setCurrentVolumes, isPlaying, masterVolume } = useContext(AppContext);
+  const { currentVolumes, setCurrentVolumes, isPlaying, masterVolume } =
+    useContext(AppContext);
 
   const [itemVolume, setItemVolume] = useState(0);
   const itemRef = useRef(null);
@@ -19,6 +20,10 @@ const SoundItem = ({ soundName }) => {
   const muteItem = () => {
     setItemVolume(0.0);
   };
+
+  useEffect(() => {
+    setItemVolume(currentVolumes[soundName]);
+  }, [currentVolumes, soundName]);
 
   useEffect(() => {
     isPlaying ? itemRef.current.play() : itemRef.current.pause();

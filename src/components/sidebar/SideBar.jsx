@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import MenuButton from "./MenuButton";
-import ItemButton from "./ItemButton";
+import SoundScapeButton from "./SoundScapeButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
@@ -39,8 +39,8 @@ const SideBar = () => {
             Create New
           </button>
           {savedSoundscapes &&
-            savedSoundscapes.map((item) => (
-              <ItemButton key={item.id} item={item} />
+            savedSoundscapes.map((soundScape) => (
+              <SoundScapeButton key={soundScape.id} soundScape={soundScape} />
             ))}
         </div>
       </div>
