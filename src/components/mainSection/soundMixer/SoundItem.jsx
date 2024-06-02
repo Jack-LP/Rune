@@ -6,7 +6,10 @@ const SoundItem = ({ soundName }) => {
     useContext(AppContext);
 
   const [itemVolume, setItemVolume] = useState(0);
+  const [panValue, setPanValue] = useState(0);
   const itemRef = useRef(null);
+  const audioContextRef = useRef(null);
+  const pannerRef = useRef(null);
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -17,9 +20,25 @@ const SoundItem = ({ soundName }) => {
     }));
   };
 
+  const handlePanChange = (e) => {
+    const newPanValue = e.target.value;
+    setPanValue(newPanValue);
+    pannerRef.current.pan.value = newPanValue;
+  };
+
   const muteItem = () => {
     setItemVolume(0.0);
   };
+
+  useEffect(() => {
+    audioContextRef.current = new window.AudioContext();
+    const track = audioContextRef.current.createMediaElementSource(
+      itemRef.current,
+    );
+    pannerRef.current = audioContextRef.current.createStereoPanner();
+    track.connect(pannerRef.current);
+    pannerRef.current.connect(audioContextRef.current.destination);
+  }, []);
 
   useEffect(() => {
     setItemVolume(currentVolumes[soundName]);
@@ -66,7 +85,14 @@ const SoundItem = ({ soundName }) => {
       <input type="radio" />
       <div className="flex items-center gap-2">
         <p>L</p>
-        <input type="range" />
+        <input
+          onChange={handlePanChange}
+          type="range"
+          min="-1"
+          max="1"
+          step="0.01"
+          value={panValue}
+        />
         <p>R</p>
       </div>
       <div className="h-full w-[180px] rounded-md border-1"></div>

@@ -1,10 +1,14 @@
 import { useAppContext } from "../../context/AppContext";
 
 const UserModal = () => {
-  const { setShowUserModal } = useAppContext();
+  const { setShowUserModal, restoreDefaults } = useAppContext();
 
   const handleClose = () => {
     setShowUserModal(false);
+  };
+
+  const handleReset = () => {
+    restoreDefaults();
   };
 
   return (
@@ -39,6 +43,7 @@ const UserModal = () => {
             <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
           </div>
         </div>
+        <button onClick={handleReset}>reset to defaults</button>
       </div>
     </div>
   );

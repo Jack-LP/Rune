@@ -1,7 +1,11 @@
 import { createContext, useState, useEffect, useMemo, useContext } from "react";
 import presetData from "../data/presets";
 import { v4 as uuidv4 } from "uuid";
-import { getFromStorage, setToStorage } from "../utilities/localStorage";
+import {
+  getFromStorage,
+  setToStorage,
+  clearStorage,
+} from "../utilities/localStorage";
 
 export const AppContext = createContext();
 
@@ -73,6 +77,10 @@ export const AppWrapper = ({ children }) => {
     setCurrentSoundScape(null);
   };
 
+  const restoreDefaults = () => {
+    clearStorage();
+  };
+
   useEffect(() => {
     setToStorage("savedSoundscapes", JSON.stringify(savedSoundscapes));
     setToStorage("user", JSON.stringify(user));
@@ -100,6 +108,7 @@ export const AppWrapper = ({ children }) => {
         setShowUserModal,
         user,
         setUser,
+        restoreDefaults,
       }}
     >
       {children}

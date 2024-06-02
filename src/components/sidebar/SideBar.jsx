@@ -5,7 +5,8 @@ import SoundScapeButton from "./SoundScapeButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
-  const { savedSoundscapes, presets, resetVolumes } = useContext(AppContext);
+  const { savedSoundscapes, presets, resetVolumes, currentVolumes } =
+    useContext(AppContext);
 
   const [showModal, setShowModal] = useState(false);
 

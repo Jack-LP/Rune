@@ -18,3 +18,10 @@ export const setToStorage = (key, value) => {
     return window.localStorage.setItem(key, value);
   }
 };
+
+export const clearStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.clear();
+    window.location.reload();
+  }
+};
