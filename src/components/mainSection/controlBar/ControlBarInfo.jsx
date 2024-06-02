@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { AppContext } from "../../../context/AppContext";
 
 const ControlBarInfo = () => {
-  const { isPlaying } = useContext(AppContext);
+  const { isPlaying, currentSoundScape } = useContext(AppContext);
 
   const [elapsedTime, setElapsedTime] = useState(0);
   const intervalRef = useRef(null);
@@ -34,11 +34,25 @@ const ControlBarInfo = () => {
     };
   }, [isPlaying]);
 
+  useEffect(() => {
+    setElapsedTime(0);
+  }, [currentSoundScape]);
+
   return (
     <div className="flex items-center gap-2">
-      <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-      <div className="flex flex-col font-GeistMono text-sm">
-        <p>{formatTime(elapsedTime)}</p>
+      <div
+        className="h-3 w-3 rounded-full"
+        style={{
+          backgroundColor: currentSoundScape
+            ? currentSoundScape.color
+            : "white",
+        }}
+      ></div>
+      <div className="flex flex-col">
+        <p className="text-sm">{currentSoundScape && currentSoundScape.name}</p>
+        <p className="font-GeistMono text-xs text-white/50">
+          {formatTime(elapsedTime)}
+        </p>
       </div>
     </div>
   );

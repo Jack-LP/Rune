@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from "react";
+import { createContext, useState, useEffect, useMemo, useContext } from "react";
 import presetData from "../data/presets";
 import { v4 as uuidv4 } from "uuid";
 import { getFromStorage, setToStorage } from "../utilities/localStorage";
@@ -30,6 +30,8 @@ export const AppWrapper = ({ children }) => {
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
   const [isPlaying, setIsPlaying] = useState(false);
   const [masterVolume, setMasterVolume] = useState(0.65);
+  const [currentSoundScape, setCurrentSoundScape] = useState(null);
+  const [showUserModal, setShowUserModal] = useState(false);
   const [savedSoundscapes, setSavedSoundscapes] = useState(() => {
     const saved = getFromStorage("savedSoundscapes", "parse");
     return saved ? saved : [];
@@ -49,8 +51,14 @@ export const AppWrapper = ({ children }) => {
   const loadSoundScape = (soundScape) => {
     if (currentVolumes !== soundScape.sounds) {
       setCurrentVolumes(soundScape.sounds);
+      setCurrentSoundScape(soundScape);
       setIsPlaying(true);
     }
+  };
+
+  const resetVolumes = () => {
+    setCurrentVolumes(defaultVolumes);
+    setCurrentSoundScape(null);
   };
 
   useEffect(() => {
@@ -72,9 +80,18 @@ export const AppWrapper = ({ children }) => {
         setSavedSoundscapes,
         createSoundscape,
         loadSoundScape,
+        resetVolumes,
+        currentSoundScape,
+        setCurrentSoundScape,
+        showUserModal,
+        setShowUserModal,
       }}
     >
       {children}
     </AppContext.Provider>
   );
+};
+
+export const useAppContext = () => {
+  return useContext(AppContext);
 };

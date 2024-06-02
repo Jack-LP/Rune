@@ -15,7 +15,7 @@ const ControlBar = () => {
   };
 
   return (
-    <div className="absolute bottom-6 left-0 right-0 ml-auto mr-auto flex w-[800px] items-center justify-between rounded-md border-1 border-white/25 p-4">
+    <div className="absolute bottom-6 left-0 right-0 ml-auto mr-auto flex h-[60px] w-[800px] items-center justify-between rounded-md border-1 border-white/25 px-4">
       <ControlBarInfo />
       <button
         className="absolute left-0 right-0 ml-auto mr-auto h-10 w-10 rounded-full border-1 border-white/25"

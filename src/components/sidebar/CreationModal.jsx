@@ -3,8 +3,7 @@ import { AppContext } from "../../context/AppContext";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
 const CreationModal = ({ setShowModal }) => {
-  const { savedSoundscapes, createSoundscape, currentVolumes } =
-    useContext(AppContext);
+  const { createSoundscape, currentVolumes } = useContext(AppContext);
 
   const [color, setColor] = useState("#3d7d6e");
   const [name, setName] = useState("New SoundScape");
@@ -19,7 +18,8 @@ const CreationModal = ({ setShowModal }) => {
   };
 
   const handleSave = () => {
-    createSoundscape(name, color);
+    const soundScapeName = name || "New SoundScape";
+    createSoundscape(soundScapeName, color);
     handleClose();
   };
 
@@ -33,7 +33,7 @@ const CreationModal = ({ setShowModal }) => {
   return (
     <div
       onClick={handleClose}
-      className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 backdrop-blur-xl"
+      className="absolute inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-xl"
     >
       <div
         onClick={(e) => e.stopPropagation()}
