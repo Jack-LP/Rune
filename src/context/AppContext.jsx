@@ -25,6 +25,14 @@ export const AppWrapper = ({ children }) => {
     [],
   );
 
+  const defaultUser = useMemo(() => ({
+    id: uuidv4(),
+    username: "User",
+    theme: "default",
+    avatar: "avatar",
+    isLoggedIn: false,
+  }));
+
   const presets = useMemo(() => presetData, []);
 
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
@@ -32,6 +40,10 @@ export const AppWrapper = ({ children }) => {
   const [masterVolume, setMasterVolume] = useState(0.65);
   const [currentSoundScape, setCurrentSoundScape] = useState(null);
   const [showUserModal, setShowUserModal] = useState(false);
+  const [user, setUser] = useState(() => {
+    const saved = getFromStorage("user", "parse");
+    return saved ? saved : defaultUser;
+  });
   const [savedSoundscapes, setSavedSoundscapes] = useState(() => {
     const saved = getFromStorage("savedSoundscapes", "parse");
     return saved ? saved : [];
@@ -63,7 +75,8 @@ export const AppWrapper = ({ children }) => {
 
   useEffect(() => {
     setToStorage("savedSoundscapes", JSON.stringify(savedSoundscapes));
-  }, [savedSoundscapes]);
+    setToStorage("user", JSON.stringify(user));
+  }, [savedSoundscapes, user]);
 
   return (
     <AppContext.Provider
@@ -85,6 +98,8 @@ export const AppWrapper = ({ children }) => {
         setCurrentSoundScape,
         showUserModal,
         setShowUserModal,
+        user,
+        setUser,
       }}
     >
       {children}
