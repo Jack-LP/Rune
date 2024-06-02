@@ -77,6 +77,17 @@ export const AppWrapper = ({ children }) => {
     setCurrentSoundScape(null);
   };
 
+  const randomiseVolumes = () => {
+    const randomVolumesObj = {};
+    Object.keys(currentVolumes).forEach((key) => {
+      randomVolumesObj[key] = Math.round(Math.random() * 100) / 100;
+    });
+
+    setCurrentVolumes(randomVolumesObj);
+
+    !isPlaying && setIsPlaying(true);
+  };
+
   const restoreDefaults = () => {
     clearStorage();
   };
@@ -109,6 +120,7 @@ export const AppWrapper = ({ children }) => {
         user,
         setUser,
         restoreDefaults,
+        randomiseVolumes,
       }}
     >
       {children}

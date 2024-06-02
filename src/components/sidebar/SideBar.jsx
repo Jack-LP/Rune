@@ -5,7 +5,7 @@ import SoundScapeButton from "./SoundScapeButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
-  const { savedSoundscapes, presets, resetVolumes, currentVolumes } =
+  const { savedSoundscapes, presets, resetVolumes, randomiseVolumes } =
     useContext(AppContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,7 @@ const SideBar = () => {
           <MenuButton func={resetVolumes}>
             <p>Reset</p>
           </MenuButton>
-          <MenuButton>
+          <MenuButton func={randomiseVolumes}>
             <p>Random</p>
           </MenuButton>
         </div>
