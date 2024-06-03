@@ -43,7 +43,7 @@ const CreationModal = ({ setShowModal }) => {
           onClick={handleClose}
           className="absolute right-4 top-4 font-GeistMono"
         >
-          X
+          <img src="/assets/img/icons/x.svg" className="h-6 w-6 invert" />
         </button>
         <h1 className="text-2xl font-semibold">Create SoundScape</h1>
         <div className="flex items-center gap-3 rounded-md bg-neutral-800 px-4 py-2">

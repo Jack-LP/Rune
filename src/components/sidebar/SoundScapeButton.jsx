@@ -10,7 +10,7 @@ const SoundScapeButon = ({ soundScape }) => {
   return (
     <button
       onClick={handleClick}
-      className="flex w-full items-center gap-2 rounded-md px-2 py-1 hover:bg-white/10"
+      className="flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10"
     >
       <div
         className="h-3 w-3 rounded-full"
