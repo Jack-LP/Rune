@@ -11,6 +11,12 @@
   },
   "tauri": {
     "allowlist": {
+      "fs": {
+        "all": true
+      },
+      "dialog": {
+        "all": true
+      },
       "all": false,
       "shell": {
         "all": false,
@@ -20,8 +26,8 @@
     "windows": [
       {
         "title": "sound-mixer",
-        "width": 800,
-        "height": 600
+        "width": 1700,
+        "height": 900
       }
     ],
     "security": {

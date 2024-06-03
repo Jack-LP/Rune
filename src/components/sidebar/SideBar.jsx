@@ -11,7 +11,7 @@ const SideBar = () => {
     resetVolumes,
     randomiseVolumes,
     user,
-    setShowUserModal,
+    setShowSettingsModal,
   } = useAppContext();
 
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +21,7 @@ const SideBar = () => {
   };
 
   const handleOpenSettings = () => {
-    setShowUserModal(true);
+    setShowSettingsModal(true);
   };
 
   return (

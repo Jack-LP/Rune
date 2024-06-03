@@ -45,7 +45,7 @@ export const AppWrapper = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [masterVolume, setMasterVolume] = useState(0.65);
   const [currentSoundScape, setCurrentSoundScape] = useState(null);
-  const [showUserModal, setShowUserModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [user, setUser] = useState(() => {
     const saved = getFromStorage("user", "parse");
     return saved ? saved : defaultUser;
@@ -118,8 +118,8 @@ export const AppWrapper = ({ children }) => {
         resetVolumes,
         currentSoundScape,
         setCurrentSoundScape,
-        showUserModal,
-        setShowUserModal,
+        showSettingsModal,
+        setShowSettingsModal,
         user,
         setUser,
         restoreDefaults,

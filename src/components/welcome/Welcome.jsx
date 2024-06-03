@@ -5,11 +5,11 @@ const Welcome = () => {
   return (
     <div className="hide-scrollbar flex h-screen items-center justify-center overflow-y-scroll font-Geist text-white">
       <img
-        src="assets/img/green.jpg"
+        src="assets/img/theme/green.jpg"
         alt=""
         className="fixed -z-10 scale-110"
       />
-      <div className='absolute inset-0 -z-10 bg-[url("/assets/img/bg-noise.png")] opacity-10'></div>
+      <div className='absolute inset-0 -z-10 bg-[url("/assets/img/theme/bg-noise.png")] opacity-10'></div>
       <WelcomeCard />
     </div>
   );

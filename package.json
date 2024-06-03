@@ -15,6 +15,7 @@
     "react-audio-spectrum": "^0.1.0",
     "react-colorful": "^5.6.1",
     "react-dom": "^18.2.0",
+    "react-toastify": "^10.0.5",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
