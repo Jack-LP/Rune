@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 
 const SoundScapeButon = ({ soundScape }) => {
-  const { loadSoundScape } = useContext(AppContext);
+  const { loadSoundScape, currentSoundScape } = useAppContext();
 
   const handleClick = () => {
     loadSoundScape(soundScape);
@@ -10,7 +9,7 @@ const SoundScapeButon = ({ soundScape }) => {
   return (
     <button
       onClick={handleClick}
-      className="flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10"
+      className={`flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10 ${currentSoundScape?.id === soundScape.id ? "bg-neutral-800" : ""}`}
     >
       <div
         className="h-3 w-3 rounded-full"

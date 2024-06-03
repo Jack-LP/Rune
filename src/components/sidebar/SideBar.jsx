@@ -5,8 +5,14 @@ import SoundScapeButton from "./SoundScapeButton";
 import CreationModal from "./CreationModal";
 
 const SideBar = () => {
-  const { savedSoundscapes, presets, resetVolumes, randomiseVolumes } =
-    useAppContext();
+  const {
+    savedSoundscapes,
+    presets,
+    resetVolumes,
+    randomiseVolumes,
+    user,
+    setShowUserModal,
+  } = useAppContext();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -14,10 +20,14 @@ const SideBar = () => {
     setShowModal(true);
   };
 
+  const handleOpenSettings = () => {
+    setShowUserModal(true);
+  };
+
   return (
-    <>
+    <div className="flex h-full w-[250px] flex-col border-r-1 border-white/25">
       {showModal && <CreationModal setShowModal={setShowModal} />}
-      <div className="flex h-full w-[250px] flex-col items-center border-r-1 border-white border-white/25 px-4">
+      <div className="flex flex-col items-center px-4">
         <div className="flex w-full justify-center border-b-1 border-white/25 py-4">
           <h1 className="text-xl font-semibold">Soundscapes</h1>
         </div>
@@ -53,10 +63,20 @@ const SideBar = () => {
             ))}
         </div>
       </div>
-      <p className="fixed bottom-2 left-2 font-GeistMono text-xs text-white/25">
-        @Jack-LP // <a href="https://github.com/Jack-LP/Rune">source</a>
-      </p>
-    </>
+      <div className="mt-auto flex w-full items-center gap-2 border-t-1 border-white/25 px-4 py-3">
+        <div className="h-8 w-8 rounded-full bg-white"></div>
+        <div className="flex flex-col">
+          <p>{user.username}</p>
+          <p className="text-xs text-white/50">
+            <span className="font-GeistMono">{savedSoundscapes.length}</span>{" "}
+            {savedSoundscapes.length === 1 ? "soundscape" : "soundscapes"}
+          </p>
+        </div>
+        <button className="ml-auto" onClick={handleOpenSettings}>
+          <img src="/assets/img/icons/gear.svg" className="icon" />
+        </button>
+      </div>
+    </div>
   );
 };
 

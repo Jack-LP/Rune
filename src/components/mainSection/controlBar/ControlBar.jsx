@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 import ControlBarInfo from "./ControlBarInfo";
 
@@ -6,12 +6,23 @@ const ControlBar = () => {
   const { isPlaying, setIsPlaying, masterVolume, setMasterVolume } =
     useContext(AppContext);
 
+  const [cachedVolume, setCachedVolume] = useState(masterVolume);
+
   const handlePlayPause = () => {
     setIsPlaying((prev) => !prev);
   };
 
   const handleMasterVolumeChange = (e) => {
     setMasterVolume(parseFloat(e.target.value));
+  };
+
+  const muteVolume = () => {
+    if (masterVolume !== 0) {
+      setCachedVolume(masterVolume);
+      setMasterVolume(0);
+    } else {
+      setMasterVolume(cachedVolume);
+    }
   };
 
   const renderVolumeIcon = () => {
@@ -38,7 +49,9 @@ const ControlBar = () => {
         )}
       </button>
       <div className="relative flex gap-2 justify-self-end">
-        <button className="absolute -left-6">{renderVolumeIcon()}</button>
+        <button onClick={muteVolume} className="absolute -left-6">
+          {renderVolumeIcon()}
+        </button>
         <input
           type="range"
           min={0}
