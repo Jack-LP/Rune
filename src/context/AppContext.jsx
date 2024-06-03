@@ -87,6 +87,7 @@ export const AppWrapper = ({ children }) => {
     });
 
     setCurrentVolumes(randomVolumesObj);
+    setCurrentSoundScape(null);
 
     !isPlaying && setIsPlaying(true);
   };

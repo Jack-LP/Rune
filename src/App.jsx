@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       {user.isLoggedIn ? (
-        <div className="hide-scrollbar relative flex h-screen overflow-y-scroll font-Geist text-white">
+        <div className="relative flex h-screen font-Geist text-white">
           <Theme />
           <div className='absolute inset-0 bg-[url("/assets/img/theme/bg-noise.png")] opacity-5'></div>
           <SideBar />

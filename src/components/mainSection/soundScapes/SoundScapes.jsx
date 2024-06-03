@@ -7,7 +7,6 @@ const SoundScapes = () => {
 
   const handleClick = (soundScape) => {
     loadSoundScape(soundScape);
-    console.log(soundScape);
   };
 
   return (
@@ -25,9 +24,8 @@ const SoundScapes = () => {
                 key={preset.id}
                 onClick={() => handleClick(preset)}
                 className="h-14 w-14 rounded-md border-1"
-              >
-                <p>3</p>
-              </button>
+                style={{ backgroundColor: preset.color }}
+              ></button>
             ))}
           </div>
         </div>

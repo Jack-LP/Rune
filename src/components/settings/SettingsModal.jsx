@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { save, open } from "@tauri-apps/api/dialog";
 import { isValidSoundScapeArray } from "../../utilities/importValidation";
+import ModalOverlay from "../common/ModalOverlay";
 
 const SettingsModal = () => {
   const {
@@ -94,20 +95,15 @@ const SettingsModal = () => {
           );
         } else {
           toast("Invalid file format. Please upload a valid JSON file.");
-          console.log("error", importedData);
         }
       }
     } catch (error) {
       toast("An error occurred while importing the file. Please try again.");
-      console.log("error", error);
     }
   };
 
   return (
-    <div
-      onClick={handleClose}
-      className="absolute inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-xl"
-    >
+    <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
@@ -198,7 +194,7 @@ const SettingsModal = () => {
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 

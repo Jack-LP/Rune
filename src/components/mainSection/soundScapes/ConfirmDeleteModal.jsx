@@ -1,4 +1,5 @@
 import { useAppContext } from "../../../context/AppContext";
+import ModalOverlay from "../../common/ModalOverlay";
 
 const ConfirmDeleteModal = ({ setShowConfirmDelete, soundScape }) => {
   const { savedSoundscapes, setSavedSoundscapes } = useAppContext();
@@ -16,10 +17,7 @@ const ConfirmDeleteModal = ({ setShowConfirmDelete, soundScape }) => {
   };
 
   return (
-    <div
-      onClick={handleClose}
-      className="fixed inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-lg"
-    >
+    <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative flex w-[480px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
@@ -47,7 +45,7 @@ const ConfirmDeleteModal = ({ setShowConfirmDelete, soundScape }) => {
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 

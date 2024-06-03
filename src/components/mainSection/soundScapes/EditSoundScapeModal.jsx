@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppContext } from "../../../context/AppContext";
 import { HexColorPicker, HexColorInput } from "react-colorful";
+import ModalOverlay from "../../common/ModalOverlay";
 
 const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
   const { setSavedSoundscapes, sounds } = useAppContext();
@@ -37,10 +38,7 @@ const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
   };
 
   return (
-    <div
-      onClick={handleClose}
-      className="fixed inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-lg"
-    >
+    <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
@@ -122,7 +120,7 @@ const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 

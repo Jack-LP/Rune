@@ -4,11 +4,12 @@ import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import EditSoundScapeModal from "./EditSoundScapeModal";
 
 const SoundScapeCard = ({ soundScape }) => {
-  const { loadSoundScape } = useContext(AppContext);
+  const { loadSoundScape, currentSoundScape } = useContext(AppContext);
 
   const [numberOfSounds, setNumberOfSounds] = useState(0);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [currentSoundScapeId, setCurrentSoundScapeId] = useState(0);
 
   const handleClick = () => {
     loadSoundScape(soundScape);
@@ -30,6 +31,14 @@ const SoundScapeCard = ({ soundScape }) => {
     setNumberOfSounds(getNumberOfSounds());
   }, []);
 
+  useEffect(() => {
+    if (currentSoundScape) {
+      setCurrentSoundScapeId(currentSoundScape.id);
+    } else {
+      setCurrentSoundScapeId(0);
+    }
+  }, [currentSoundScape]);
+
   return (
     <>
       {showConfirmDelete && (
@@ -44,7 +53,9 @@ const SoundScapeCard = ({ soundScape }) => {
           setShowEditModal={setShowEditModal}
         />
       )}
-      <div className="group flex items-center rounded-md border-1 border-white/25">
+      <div
+        className={`group flex items-center rounded-md border-1 border-white/25 ${currentSoundScapeId === soundScape.id ? "bg-neutral-800" : "bg-transparent"}`}
+      >
         <button
           onClick={handleClick}
           className="flex w-full items-center gap-3 p-3"
