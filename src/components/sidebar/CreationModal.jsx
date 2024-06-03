@@ -41,7 +41,7 @@ const CreationModal = ({ setShowModal }) => {
       >
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 font-GeistMono"
+          className="absolute right-4 top-4 font-GeistMono opacity-50 hover:opacity-100"
         >
           <img src="/assets/img/icons/x.svg" className="h-6 w-6 invert" />
         </button>

@@ -53,14 +53,15 @@ const SideBar = () => {
             <img src="/assets/img/icons/plus.svg" className="icon" />
             Create New
           </button>
-          {}
-          {presets.map((soundScape) => (
-            <SoundScapeButton key={soundScape.id} soundScape={soundScape} />
-          ))}
-          {savedSoundscapes &&
-            savedSoundscapes.map((soundScape) => (
+          <div className="hide-scrollbar flex max-h-[650px] flex-col overflow-y-scroll">
+            {presets.map((soundScape) => (
               <SoundScapeButton key={soundScape.id} soundScape={soundScape} />
             ))}
+            {savedSoundscapes &&
+              savedSoundscapes.map((soundScape) => (
+                <SoundScapeButton key={soundScape.id} soundScape={soundScape} />
+              ))}
+          </div>
         </div>
       </div>
       <div className="mt-auto flex w-full items-center gap-2 border-t-1 border-white/25 px-4 py-3">

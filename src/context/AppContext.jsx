@@ -75,6 +75,7 @@ export const AppWrapper = ({ children }) => {
   const resetVolumes = () => {
     setCurrentVolumes(defaultVolumes);
     setCurrentSoundScape(null);
+    setIsPlaying(false);
   };
 
   const randomiseVolumes = () => {
