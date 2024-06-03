@@ -11,7 +11,7 @@ const SoundScapes = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 rounded-md border-1 border-white/25 p-8">
+    <div className="flex flex-col gap-6 rounded-md border-1 border-white/25 p-8 backdrop-blur-lg">
       <div className="flex items-center gap-2">
         <img src="/assets/img/icons/sound.svg" className="icon" />
         <h1 className="text-xl font-semibold">Library</h1>

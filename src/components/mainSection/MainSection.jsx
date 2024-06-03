@@ -8,7 +8,7 @@ const MainSection = () => {
       <div className="grid w-full grid-cols-2 grid-rows-2 gap-8 rounded-md">
         <SoundMixer />
         <SoundScapes />
-        <div className="w-full rounded-md border-1 border-white/25"></div>
+        <div className="w-full rounded-md border-1 border-white/25 backdrop-blur-lg"></div>
       </div>
     </>
   );

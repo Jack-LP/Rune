@@ -25,7 +25,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="flex h-full w-[250px] flex-col border-r-1 border-white/25">
+    <div className="flex h-full w-[250px] flex-col border-r-1 border-white/25 backdrop-blur-lg">
       {showModal && <CreationModal setShowModal={setShowModal} />}
       <div className="flex flex-col items-center px-4">
         <div className="flex w-full justify-center border-b-1 border-white/25 py-4">

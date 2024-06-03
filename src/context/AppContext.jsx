@@ -37,6 +37,8 @@ export const AppWrapper = ({ children }) => {
     isLoggedIn: false,
   }));
 
+  const themes = ["default", "blue", "green", "grey", "orange"];
+
   const presets = useMemo(() => presetData, []);
 
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
@@ -122,6 +124,7 @@ export const AppWrapper = ({ children }) => {
         setUser,
         restoreDefaults,
         randomiseVolumes,
+        themes,
       }}
     >
       {children}

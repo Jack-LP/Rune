@@ -36,7 +36,7 @@ const ControlBar = () => {
   };
 
   return (
-    <div className="absolute bottom-6 left-0 right-0 ml-auto mr-auto flex h-[60px] w-[800px] items-center justify-between rounded-md border-1 border-white/25 px-4">
+    <div className="absolute bottom-6 left-0 right-0 ml-auto mr-auto flex h-[60px] w-[800px] items-center justify-between rounded-md border-1 border-white/25 px-4 backdrop-blur-lg">
       <ControlBarInfo />
       <button
         className="absolute left-0 right-0 ml-auto mr-auto flex h-10 w-10 items-center justify-center rounded-full border-1 border-white/25"

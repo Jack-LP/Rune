@@ -1,8 +1,15 @@
 import { useAppContext } from "../../context/AppContext";
+import ThemeButton from "./ThemeButton";
 
 const UserModal = () => {
-  const { setShowUserModal, restoreDefaults, savedSoundscapes, user, setUser } =
-    useAppContext();
+  const {
+    setShowUserModal,
+    restoreDefaults,
+    savedSoundscapes,
+    user,
+    setUser,
+    themes,
+  } = useAppContext();
 
   const handleUsernameChange = (e) => {
     setUser((prev) => ({ ...prev, username: e.target.value }));
@@ -24,6 +31,8 @@ const UserModal = () => {
     console.log("import");
   };
 
+  console.log(themes);
+
   return (
     <div
       onClick={handleClose}
@@ -41,7 +50,6 @@ const UserModal = () => {
               type="text"
               className="rounded-md border-1 border-white/25 bg-transparent p-2 outline-none"
               placeholder="Username"
-              // value={user.username}
               onChange={handleUsernameChange}
             />
             <p className="text-white/50">
@@ -54,12 +62,9 @@ const UserModal = () => {
         <div className="flex flex-col items-start gap-2">
           <h2 className="text-white/50">Select Theme:</h2>
           <div className="grid grid-cols-3 grid-rows-2 gap-2">
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
-            <div className="h-14 w-14 rounded-md bg-neutral-800"></div>
+            {themes.map((theme) => (
+              <ThemeButton theme={theme} key={theme} />
+            ))}
           </div>
         </div>
         <div className="flex gap-4">
