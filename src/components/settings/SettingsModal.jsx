@@ -5,8 +5,10 @@ import ThemeButton from "./ThemeButton";
 import { v4 as uuidv4 } from "uuid";
 import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { save, open } from "@tauri-apps/api/dialog";
+import { fetch, Body, getClient, ResponseType } from "@tauri-apps/api/http";
 import { isValidSoundScapeArray } from "../../utilities/importValidation";
 import ModalOverlay from "../common/ModalOverlay";
+import { API_KEY } from "../../data/config";
 
 const SettingsModal = () => {
   const {
@@ -20,6 +22,15 @@ const SettingsModal = () => {
   } = useAppContext();
 
   const [newUsername, setNewUsername] = useState(user.username);
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   const handleUsernameChange = (e) => {
     setNewUsername(e.target.value);
@@ -39,6 +50,49 @@ const SettingsModal = () => {
       username: newUsername ? newUsername : "User",
     }));
     setShowSettingsModal(false);
+  };
+
+  const uploadToServer = async (base64, imageType) => {
+    try {
+      const response = await fetch(`https://api.imgbb.com/1/upload`, {
+        body: Body.form({
+          key: API_KEY,
+          image: base64,
+        }),
+        method: "POST",
+        responseType: ResponseType.JSON,
+      });
+
+      const json = response.data;
+      console.log(json);
+
+      if (json.data && json.data.url) {
+        const newUser = {
+          ...user,
+          avatar: imageType === "avatar" ? json.data.url : user.avatar,
+          theme: imageType === "theme" ? json.data.url : user.theme,
+        };
+        setUser(newUser);
+        toast(`Uploaded ${imageType}`);
+      } else {
+        toast("An error occurred while uploading the image.");
+      }
+    } catch (error) {
+      console.error("Error uploading to server:", error);
+      toast("An error occurred while uploading the image.");
+    }
+  };
+
+  const handleImageUpload = async (e, imageType) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const base64 = await convertToBase64(file);
+      uploadToServer(base64, imageType);
+    } catch (error) {
+      console.error("Error converting file to base64:", error);
+    }
   };
 
   const handleExport = async () => {
@@ -118,7 +172,10 @@ const SettingsModal = () => {
         <div className="flex gap-8">
           <div className="flex flex-1 flex-col gap-4">
             <h2 className="text-lg">Profile</h2>
-            <div className="h-28 w-28 self-center rounded-full bg-white"></div>
+            <img
+              src={user.avatar}
+              className="size-28 self-center rounded-full"
+            ></img>
             <div className="flex flex-col gap-2">
               <p className="text-white/50">Username</p>
               <input
@@ -132,9 +189,19 @@ const SettingsModal = () => {
             <div className="flex flex-col gap-2">
               <p className="text-white/50">Avatar</p>
               <div className="flex gap-2">
-                <button className="flex-1 rounded-md bg-neutral-800 p-2">
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="avatarUpload"
+                  onChange={(e) => handleImageUpload(e, "avatar")}
+                  className="hidden"
+                ></input>
+                <label
+                  htmlFor="avatarUpload"
+                  className="flex-1 cursor-pointer rounded-md bg-neutral-800 p-2 text-center"
+                >
                   Upload
-                </button>
+                </label>
                 <button className="flex-1 rounded-md bg-neutral-800 p-2">
                   Remove
                 </button>
@@ -149,18 +216,27 @@ const SettingsModal = () => {
                 {themes.map((theme) => (
                   <ThemeButton theme={theme} key={theme} />
                 ))}
-                <button className="flex h-14 w-14 items-center justify-center rounded-md bg-neutral-800">
+                <input
+                  type="file"
+                  id="themeUpload"
+                  onChange={(e) => handleImageUpload(e, "theme")}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="themeUpload"
+                  className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-md bg-neutral-800"
+                >
                   <img
                     src="/assets/img/icons/plus.svg"
                     className="h-6 w-6 invert"
                   />
-                </button>
+                </label>
               </div>
             </div>
             <div className="flex flex-col gap-2">
               <h2 className="text-lg">
                 SoundScapes{" "}
-                <span className="font-GeistMono">{`(${savedSoundscapes.length})`}</span>
+                <span className="font-GeistMono text-sm">{`(${savedSoundscapes.length})`}</span>
               </h2>
               <div className="flex flex-col gap-2">
                 <button

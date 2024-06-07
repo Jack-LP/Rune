@@ -69,7 +69,7 @@ const SideBar = () => {
           </div>
         </div>
         <div className="mt-auto flex w-full items-center gap-2 border-t-1 border-white/25 px-4 py-3">
-          <div className="h-8 w-8 rounded-full bg-white"></div>
+          <img src={user.avatar} className="size-8 rounded-full"></img>
           <div className="flex flex-col">
             <p>{user.username}</p>
             <p className="text-xs text-white/50">

@@ -13,7 +13,9 @@ function App() {
 
   return (
     <>
-      {user.isLoggedIn ? (
+      {!user.isLoggedIn ? (
+        <Welcome />
+      ) : (
         <div className="relative flex h-screen font-Geist text-white">
           <Theme />
           <div className='absolute inset-0 bg-[url("/assets/img/theme/bg-noise.png")] opacity-5'></div>
@@ -24,8 +26,6 @@ function App() {
             <ControlBar />
           </div>
         </div>
-      ) : (
-        <Welcome />
       )}
       <ToastContainer
         position="bottom-right"

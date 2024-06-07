@@ -10,7 +10,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1",
+    "@tauri-apps/api": "^1.5.6",
     "react": "^18.2.0",
     "react-audio-spectrum": "^0.1.0",
     "react-colorful": "^5.6.1",

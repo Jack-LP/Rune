@@ -21,6 +21,15 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": [
+          "http://localhost",
+          "https://api.imgbb.com/*",
+          "https://dummyjson.com/*"
+        ]
       }
     },
     "windows": [
@@ -31,7 +40,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; img-src 'self' https://api.imgbb.com; script-src 'self'; style-src 'self' 'unsafe-inline';"
     },
     "bundle": {
       "active": true,
