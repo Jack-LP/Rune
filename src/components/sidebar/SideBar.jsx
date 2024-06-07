@@ -12,6 +12,8 @@ const SideBar = () => {
     randomiseVolumes,
     user,
     setShowSettingsModal,
+    currentTab,
+    setCurrentTab,
   } = useAppContext();
 
   const [showModal, setShowModal] = useState(false);
@@ -33,10 +35,22 @@ const SideBar = () => {
             <h1 className="text-xl font-semibold">Soundscapes</h1>
           </div>
           <div className="flex w-full flex-col border-b-1 border-white/25 py-4">
-            <MenuButton>
+            <MenuButton
+              func={() => setCurrentTab("home")}
+              currentTab={currentTab}
+            >
               <img src="/assets/img/icons/home.svg" className="icon" />
               <p>Home</p>
             </MenuButton>
+            <MenuButton
+              func={() => setCurrentTab("video")}
+              currentTab={currentTab}
+            >
+              <img src="/assets/img/icons/video.svg" className="icon" />
+              <p>Video</p>
+            </MenuButton>
+          </div>
+          <div className="flex w-full flex-col border-b-1 border-white/25 py-4">
             <MenuButton func={resetVolumes}>
               <img src="/assets/img/icons/reset.svg" className="icon" />
               <p>Reset</p>

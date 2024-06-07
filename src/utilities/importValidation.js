@@ -26,4 +26,15 @@ const isValidSoundScapeArray = (data) => {
   return Array.isArray(data) && data.every(isValidSoundScape);
 };
 
-export { isValidSoundObject, isValidSoundScape, isValidSoundScapeArray };
+const isYouTubeUrl = (url) => {
+  const regex =
+    /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(?:-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/;
+  return regex.test(url);
+};
+
+export {
+  isValidSoundObject,
+  isValidSoundScape,
+  isValidSoundScapeArray,
+  isYouTubeUrl,
+};

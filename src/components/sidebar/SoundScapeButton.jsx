@@ -9,7 +9,7 @@ const SoundScapeButon = ({ soundScape }) => {
   return (
     <button
       onClick={handleClick}
-      className={`flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10 ${currentSoundScape?.id === soundScape.id ? "bg-neutral-800" : ""}`}
+      className={`flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10 ${currentSoundScape?.id === soundScape.id ? "bg-black/30" : ""}`}
     >
       <div
         className="h-3 w-3 rounded-full"

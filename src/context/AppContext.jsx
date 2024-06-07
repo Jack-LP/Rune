@@ -41,6 +41,7 @@ export const AppWrapper = ({ children }) => {
 
   const presets = useMemo(() => presetData, []);
 
+  const [currentTab, setCurrentTab] = useState("home");
   const [currentVolumes, setCurrentVolumes] = useState(defaultVolumes);
   const [isPlaying, setIsPlaying] = useState(false);
   const [masterVolume, setMasterVolume] = useState(0.65);
@@ -126,6 +127,8 @@ export const AppWrapper = ({ children }) => {
         restoreDefaults,
         randomiseVolumes,
         themes,
+        currentTab,
+        setCurrentTab,
       }}
     >
       {children}

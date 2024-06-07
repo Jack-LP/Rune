@@ -10,7 +10,7 @@ const SoundScapes = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 rounded-md border-1 border-white/25 p-8 backdrop-blur-lg">
+    <div className="flex flex-col gap-5 rounded-md border-1 border-white/25 p-8 backdrop-blur-lg">
       <div className="flex items-center gap-2">
         <img src="/assets/img/icons/sound.svg" className="icon" />
         <h1 className="text-xl font-semibold">Library</h1>
@@ -23,7 +23,7 @@ const SoundScapes = () => {
               <button
                 key={preset.id}
                 onClick={() => handleClick(preset)}
-                className="h-14 w-14 rounded-md border-1"
+                className="size-14 rounded-md border-1"
                 style={{ backgroundColor: preset.color }}
               ></button>
             ))}

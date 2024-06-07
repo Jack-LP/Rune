@@ -20,7 +20,7 @@ const Theme = () => {
     <img
       src={theme}
       alt=""
-      className="fixed -z-20 h-screen w-screen scale-110 object-cover blur-xl"
+      className="fixed -z-20 h-screen w-screen scale-105 object-cover"
     />
   );
 };

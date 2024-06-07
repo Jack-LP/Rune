@@ -4,12 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./components/welcome/Welcome";
 import SideBar from "./components/sideBar/SideBar";
 import MainSection from "./components/mainSection/MainSection";
+import VideoSection from "./components/videoSection/VideoSection";
 import ControlBar from "./components/mainSection/controlBar/ControlBar";
 import SettingsModal from "./components/settings/SettingsModal";
 import Theme from "./components/common/Theme";
 
 function App() {
-  const { showSettingsModal, user } = useAppContext();
+  const { showSettingsModal, user, currentTab } = useAppContext();
 
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
           {showSettingsModal && <SettingsModal />}
           <div className="relative flex w-full p-16 pb-28">
             <MainSection />
+            <VideoSection />
             <ControlBar />
           </div>
         </div>
