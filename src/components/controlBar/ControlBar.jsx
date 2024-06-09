@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../../../context/AppContext";
+import { useState } from "react";
+import { useAppContext } from "../../context/AppContext";
 import ControlBarInfo from "./ControlBarInfo";
 
 const ControlBar = () => {
   const { isPlaying, setIsPlaying, masterVolume, setMasterVolume } =
-    useContext(AppContext);
+    useAppContext();
 
   const [cachedVolume, setCachedVolume] = useState(masterVolume);
 

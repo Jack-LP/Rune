@@ -6,7 +6,7 @@ const MenuButton = ({ children, func, currentTab }) => {
   return (
     <button
       onClick={func}
-      className={`hover:bg-white/10} flex w-full items-center gap-2 rounded-md p-2 ${isActive ? "bg-black/30" : ""}`}
+      className={`flex w-full items-center gap-2 rounded-md p-2 hover:bg-white/10 ${isActive ? "bg-black/30" : ""}`}
     >
       {children}
     </button>

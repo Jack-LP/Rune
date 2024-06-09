@@ -35,15 +35,20 @@ const CreationModal = ({ setShowModal }) => {
     <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex w-[480px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
+        className="pt-15 relative flex w-[480px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8 pt-16"
       >
-        <button
-          onClick={handleClose}
-          className="absolute right-4 top-4 font-GeistMono opacity-50 hover:opacity-100"
-        >
-          <img src="/assets/img/icons/x.svg" className="h-6 w-6 invert" />
-        </button>
-        <h1 className="text-2xl font-semibold">Create SoundScape</h1>
+        <div className="absolute left-0 top-0 flex w-full items-center gap-2 border-b-1 border-white/25 px-2 py-2 text-sm text-white/50">
+          <div className="border-r-1 border-white/50 pr-2">
+            <img src="/assets/img/icons/stars.svg" className="icon" />
+          </div>
+          <p>Create SoundScape</p>
+          <button
+            onClick={handleClose}
+            className="ml-auto font-GeistMono opacity-50 hover:opacity-100"
+          >
+            <img src="/assets/img/icons/x.svg" className="size-5 invert" />
+          </button>
+        </div>
         <div className="flex items-center gap-3 rounded-md bg-neutral-800 px-4 py-2">
           <div
             className="h-3 w-3 rounded-full"

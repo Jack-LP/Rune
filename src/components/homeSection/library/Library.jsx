@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
 import SoundScapeCard from "./SoundscapeCard";
 
-const SoundScapes = () => {
+const Library = () => {
   const { presets, savedSoundscapes, loadSoundScape } = useContext(AppContext);
 
   const handleClick = (soundScape) => {
@@ -42,4 +42,4 @@ const SoundScapes = () => {
   );
 };
 
-export default SoundScapes;
+export default Library;

@@ -45,7 +45,7 @@ const SoundItem = ({ soundName, index }) => {
   }, [itemVolume, isMuted, masterVolume]);
 
   return (
-    <div className="flex w-full items-center justify-between gap-4">
+    <div className="flex w-full items-center justify-between gap-6">
       <audio
         id={`audioElement-${uniqueId.current}`}
         className="hidden"
@@ -54,32 +54,32 @@ const SoundItem = ({ soundName, index }) => {
       >
         <source src={`/assets/audio/${soundName}.mp3`} type="audio/mpeg" />
       </audio>
-      <p className="font-GeistMono text-sm text-white/50">{index + 1}</p>
       <div className="flex items-center gap-2">
+        <p className="font-GeistMono text-sm text-white/50">{index + 1}</p>
         <div
           onClick={toggleMute}
           className="h-10 w-10 cursor-pointer rounded-md border-1"
         ></div>
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2">
-            <p className="text-lg font-semibold capitalize">{soundName}</p>
-            <p className="font-GeistMono text-xs text-white/50">
-              {parseFloat(itemVolume).toFixed(2)}
-            </p>
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.01}
-            value={itemVolume}
-            onChange={handleVolumeChange}
-            className="cursor-pointer accent-white"
-          />
+      </div>
+      <div className="flex flex-col">
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-semibold capitalize">{soundName}</p>
+          <p className="font-GeistMono text-xs text-white/50">
+            {parseFloat(itemVolume).toFixed(2)}
+          </p>
         </div>
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.01}
+          value={itemVolume}
+          onChange={handleVolumeChange}
+          className="w-44 cursor-pointer accent-white"
+        />
       </div>
       <input type="radio" />
-      <div className="flex h-full w-[180px] items-end justify-center overflow-hidden rounded-md border-1">
+      <div className="flex h-full w-44 items-end justify-center overflow-hidden rounded-md border-1">
         <AudioSpectrum
           id={`audio-canvas-${uniqueId.current}`}
           height={40}

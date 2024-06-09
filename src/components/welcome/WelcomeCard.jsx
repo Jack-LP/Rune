@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 
 const WelcomeCard = () => {
-  const { setUser } = useAppContext();
+  const { setUser, user } = useAppContext();
 
   const [username, setUsername] = useState("User");
 
@@ -18,6 +18,8 @@ const WelcomeCard = () => {
     }));
   };
 
+  console.log(user.avatar);
+
   return (
     <div className="flex w-[800px] rounded-lg border-1 border-white/25">
       <div className="flex flex-1 flex-col gap-8 rounded-l-lg bg-neutral-900 p-6">
@@ -25,7 +27,10 @@ const WelcomeCard = () => {
         <div className="flex flex-col gap-4">
           <h2 className="text-white/50">Profile</h2>
           <div className="flex items-center gap-2">
-            <img src="" alt="" className="h-24 w-24 rounded-full" />
+            <img
+              src={user.avatar || "/assets/img/icons/user.svg"}
+              className="size-20 rounded-full"
+            />
             <input
               type="text"
               placeholder="Username"

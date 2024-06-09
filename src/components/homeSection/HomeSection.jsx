@@ -1,8 +1,8 @@
 import { useAppContext } from "../../context/AppContext";
 import SoundMixer from "./soundMixer/SoundMixer";
-import SoundScapes from "./soundScapes/SoundScapes";
+import Library from "./library/Library";
 
-const MainSection = () => {
+const HomeSection = () => {
   const { currentTab } = useAppContext();
 
   return (
@@ -11,11 +11,11 @@ const MainSection = () => {
         className={`w-full grid-cols-2 grid-rows-2 gap-8 rounded-md ${currentTab === "home" ? "grid" : "hidden"}`}
       >
         <SoundMixer />
-        <SoundScapes />
+        <Library />
         <div className="w-full rounded-md border-1 border-white/25 backdrop-blur-lg"></div>
       </div>
     </>
   );
 };
 
-export default MainSection;
+export default HomeSection;

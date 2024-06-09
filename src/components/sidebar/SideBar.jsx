@@ -83,7 +83,10 @@ const SideBar = () => {
           </div>
         </div>
         <div className="mt-auto flex w-full items-center gap-2 border-t-1 border-white/25 px-4 py-3">
-          <img src={user.avatar} className="size-8 rounded-full"></img>
+          <img
+            src={user.avatar || "/assets/img/icons/user.svg"}
+            className="size-[36px] rounded-full"
+          ></img>
           <div className="flex flex-col">
             <p>{user.username}</p>
             <p className="text-xs text-white/50">
@@ -92,7 +95,10 @@ const SideBar = () => {
             </p>
           </div>
           <button className="ml-auto" onClick={handleOpenSettings}>
-            <img src="/assets/img/icons/gear.svg" className="icon" />
+            <img
+              src="/assets/img/icons/gear.svg"
+              className="size-5 opacity-50 invert hover:opacity-100"
+            />
           </button>
         </div>
       </div>

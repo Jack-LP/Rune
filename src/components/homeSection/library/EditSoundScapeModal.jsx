@@ -41,17 +41,22 @@ const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
     <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
+        className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8 pt-16"
       >
-        <button
-          onClick={handleClose}
-          className="absolute right-4 top-4 font-GeistMono opacity-50 hover:opacity-100"
-        >
-          <img src="/assets/img/icons/x.svg" className="h-6 w-6 invert" />
-        </button>
-        <h1 className="text-2xl font-semibold">Edit SoundScape</h1>
+        <div className="absolute left-0 top-0 flex w-full items-center gap-2 border-b-1 border-white/25 px-2 py-2 text-sm text-white/50">
+          <div className="border-r-1 border-white/50 pr-2">
+            <img src="/assets/img/icons/edit.svg" className="icon" />
+          </div>
+          <p>Edit SoundScape</p>
+          <button
+            onClick={handleClose}
+            className="ml-auto font-GeistMono opacity-50 hover:opacity-100"
+          >
+            <img src="/assets/img/icons/x.svg" className="size-5 invert" />
+          </button>
+        </div>
         <div className="flex gap-6">
-          <div className="flex flex-1 flex-col gap-4">
+          <div className="flex flex-1 flex-col gap-6">
             <div className="flex flex-col gap-2">
               <p>Name</p>
               <input
@@ -76,13 +81,27 @@ const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
                 className="rounded-md border-1 border-white/25 bg-transparent p-2 outline-none"
               />
             </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handleSave}
+                className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3"
+              >
+                Save
+              </button>
+              <button
+                onClick={handleClose}
+                className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
           <div className="flex flex-1 flex-col gap-4">
             <p>Sounds</p>
             {sounds.map((soundName) => (
               <div key={soundName} className="flex items-center gap-2">
-                <div className="h-10 w-10 cursor-pointer rounded-md border-1"></div>
-                <div className="flex flex-col">
+                <div className="size-10 flex-shrink-0 rounded-md border-1"></div>
+                <div className="flex w-full flex-col">
                   <div className="flex items-center gap-2">
                     <p className="text-lg font-semibold capitalize">
                       {soundName}
@@ -96,28 +115,14 @@ const EditSoundScapeModal = ({ soundScape, setShowEditModal }) => {
                     min={0}
                     max={1}
                     step={0.01}
-                    value={newVolumes[soundName]} // Use value from state
-                    onChange={(e) => handleVolumeChange(e, soundName)} // Pass soundName to the handler
+                    value={newVolumes[soundName]}
+                    onChange={(e) => handleVolumeChange(e, soundName)}
                     className="cursor-pointer accent-white"
                   />
                 </div>
               </div>
             ))}
           </div>
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={handleSave}
-            className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3"
-          >
-            Save
-          </button>
-          <button
-            onClick={handleClose}
-            className="flex flex-1 items-center justify-center rounded-md bg-neutral-800 p-3"
-          >
-            Cancel
-          </button>
         </div>
       </div>
     </ModalOverlay>

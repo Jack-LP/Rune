@@ -3,9 +3,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./components/welcome/Welcome";
 import SideBar from "./components/sideBar/SideBar";
-import MainSection from "./components/mainSection/MainSection";
+import HomeSection from "./components/homeSection/homeSection";
 import VideoSection from "./components/videoSection/VideoSection";
-import ControlBar from "./components/mainSection/controlBar/ControlBar";
+import ControlBar from "./components/controlBar/ControlBar";
 import SettingsModal from "./components/settings/SettingsModal";
 import Theme from "./components/common/Theme";
 
@@ -23,7 +23,7 @@ function App() {
           <SideBar />
           {showSettingsModal && <SettingsModal />}
           <div className="relative flex w-full p-16 pb-28">
-            <MainSection />
+            <HomeSection />
             <VideoSection />
             <ControlBar />
           </div>

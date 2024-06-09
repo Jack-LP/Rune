@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import { AppContext } from "../../../context/AppContext";
+import { useEffect, useState, useRef } from "react";
+import { useAppContext } from "../../context/AppContext";
 
 const ControlBarInfo = () => {
-  const { isPlaying, currentSoundScape } = useContext(AppContext);
+  const { isPlaying, currentSoundScape } = useAppContext();
 
   const [elapsedTime, setElapsedTime] = useState(0);
   const intervalRef = useRef(null);

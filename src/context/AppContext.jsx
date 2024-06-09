@@ -33,7 +33,7 @@ export const AppWrapper = ({ children }) => {
     id: uuidv4(),
     username: "User",
     theme: "default",
-    avatar: "avatar",
+    avatar: "",
     isLoggedIn: false,
   }));
 

@@ -156,24 +156,36 @@ const SettingsModal = () => {
     }
   };
 
+  const removeAvatar = () => {
+    setUser((prev) => ({
+      ...prev,
+      avatar: "",
+    }));
+  };
+
   return (
     <ModalOverlay onClick={handleClose}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8"
+        className="relative flex w-[680px] flex-col gap-8 rounded-md border-1 border-white/25 bg-neutral-900 p-8 pt-16"
       >
-        <button
-          onClick={handleClose}
-          className="absolute right-4 top-4 font-GeistMono opacity-50 hover:opacity-100"
-        >
-          <img src="/assets/img/icons/x.svg" className="h-6 w-6 invert" />
-        </button>
-        <h1 className="text-2xl font-semibold">Settings</h1>
+        <div className="absolute left-0 top-0 flex w-full items-center gap-2 border-b-1 border-white/25 px-2 py-2 text-sm text-white/50">
+          <div className="border-r-1 border-white/50 pr-2">
+            <img src="/assets/img/icons/gear.svg" className="icon" />
+          </div>
+          <p>Settings</p>
+          <button
+            onClick={handleClose}
+            className="ml-auto font-GeistMono opacity-50 hover:opacity-100"
+          >
+            <img src="/assets/img/icons/x.svg" className="size-5 invert" />
+          </button>
+        </div>
         <div className="flex gap-8">
           <div className="flex flex-1 flex-col gap-4">
             <h2 className="text-lg">Profile</h2>
             <img
-              src={user.avatar}
+              src={user.avatar || "/assets/img/icons/user.svg"}
               className="size-28 self-center rounded-full"
             ></img>
             <div className="flex flex-col gap-2">
@@ -202,7 +214,10 @@ const SettingsModal = () => {
                 >
                   Upload
                 </label>
-                <button className="flex-1 rounded-md bg-neutral-800 p-2">
+                <button
+                  onClick={removeAvatar}
+                  className="flex-1 rounded-md bg-neutral-800 p-2"
+                >
                   Remove
                 </button>
               </div>
@@ -236,7 +251,7 @@ const SettingsModal = () => {
             <div className="flex flex-col gap-2">
               <h2 className="text-lg">
                 SoundScapes{" "}
-                <span className="font-GeistMono text-sm">{`(${savedSoundscapes.length})`}</span>
+                <span className="font-GeistMono text-sm text-white/50">{`(${savedSoundscapes.length})`}</span>
               </h2>
               <div className="flex flex-col gap-2">
                 <button

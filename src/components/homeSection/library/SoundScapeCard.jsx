@@ -54,7 +54,7 @@ const SoundScapeCard = ({ soundScape }) => {
         />
       )}
       <div
-        className={`group flex items-center rounded-md border-1 border-white/25 ${currentSoundScapeId === soundScape.id ? "bg-neutral-800" : "bg-transparent"}`}
+        className={`group flex items-center rounded-md border-1 border-white/25 ${currentSoundScapeId === soundScape.id ? "bg-black/25" : "bg-transparent"}`}
       >
         <button
           onClick={handleClick}
