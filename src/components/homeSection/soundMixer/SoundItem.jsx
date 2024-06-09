@@ -45,7 +45,7 @@ const SoundItem = ({ soundName, index }) => {
   }, [itemVolume, isMuted, masterVolume]);
 
   return (
-    <div className="flex w-full items-center justify-between gap-6">
+    <div className="flex w-full items-center gap-6">
       <audio
         id={`audioElement-${uniqueId.current}`}
         className="hidden"
@@ -58,8 +58,10 @@ const SoundItem = ({ soundName, index }) => {
         <p className="font-GeistMono text-sm text-white/50">{index + 1}</p>
         <div
           onClick={toggleMute}
-          className="h-10 w-10 cursor-pointer rounded-md border-1"
-        ></div>
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border-1 border-white/50"
+        >
+          <img src={`/assets/img/icons/${soundName}.svg`} className="size-8" />
+        </div>
       </div>
       <div className="flex flex-col">
         <div className="flex items-center gap-2">
@@ -78,8 +80,7 @@ const SoundItem = ({ soundName, index }) => {
           className="w-44 cursor-pointer accent-white"
         />
       </div>
-      <input type="radio" />
-      <div className="flex h-full w-44 items-end justify-center overflow-hidden rounded-md border-1">
+      <div className="ml-auto flex h-full w-44 flex-shrink-0 items-end justify-center overflow-hidden rounded-md border-1">
         <AudioSpectrum
           id={`audio-canvas-${uniqueId.current}`}
           height={40}
